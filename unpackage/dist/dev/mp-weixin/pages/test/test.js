@@ -127,47 +127,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 var _default =
 {
 
   data: function data() {
     return {
       scrollLeft: 0,
-      isClickChange: false,
-      currentTab: 0,
-      tab: [{
-        name: '政策咨询' },
-      {
-        name: '就业分配' },
-      {
-        name: '战友互助' }],
+      currentTab: 1,
+      tab: ['关注', '推荐', '发现'],
+      swiperDateList: {
+        imglist: ['http://img5.imgtn.bdimg.com/it/u=3300305952,1328708913&fm=26&gp=0.jpg',
+        'http://img4.imgtn.bdimg.com/it/u=2153937626,1074119156&fm=26&gp=0.jpg',
+        'http://img2.imgtn.bdimg.com/it/u=234634259,4236876085&fm=26&gp=0.jpg'],
 
-      swiperDateList: [
-      1, 2, 3] };
+        text: [1, 2, 3] } };
+
 
 
   },
 
   onLoad: function onLoad() {
     //初始化数据
-    for (var i = 0; i < this.swiperDateList.length; i++) {
-      this.getDateList(i);
-    }
+    // for (var i = 0; i < this.swiperDateList.length; i++) {
+    // 	this.getDateList(i);
+    // }
   },
   methods: {
-    swichMenu: function () {var _swichMenu = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(current) {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
+    switchTab: function () {var _switchTab = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(current) {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
                 this.currentTab == current)) {_context.next = 4;break;}return _context.abrupt("return",
                 false);case 4:
 
                 this.currentTab = current;
-                this.setScrollLeft(current);case 6:case "end":return _context.stop();}}}, _callee, this);}));function swichMenu(_x) {return _swichMenu.apply(this, arguments);}return swichMenu;}(),
+                this.setScrollLeft(current);case 6:case "end":return _context.stop();}}}, _callee, this);}));function switchTab(_x) {return _switchTab.apply(this, arguments);}return switchTab;}(),
 
 
     swiperChange: function () {var _swiperChange = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(e) {var index;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 index = e.target.current;
-                // console.log(index)
+                console.log(index);
                 this.setScrollLeft(index);
-                this.currentTab = index;case 3:case "end":return _context2.stop();}}}, _callee2, this);}));function swiperChange(_x2) {return _swiperChange.apply(this, arguments);}return swiperChange;}(),
+                this.currentTab = index;case 4:case "end":return _context2.stop();}}}, _callee2, this);}));function swiperChange(_x2) {return _swiperChange.apply(this, arguments);}return swiperChange;}(),
 
     setScrollLeft: function () {var _setScrollLeft = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(tabIndex) {var leftWidthSum, i, nowElement, winWidth;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
                 leftWidthSum = 0;
@@ -190,16 +190,16 @@ var _default =
     },
     loadMore: function loadMore(tabIndex) {
       console.log('正在加载更多数据。。。');
-      this.getDateList(tabIndex);
-    },
-    getDateList: function getDateList(tabIndex) {
-      for (var i = 0; i < 20; i++) {
-        var entity = this.menuTabs[tabIndex].name + this.swiperDateList[tabIndex].length;
-
-        this.swiperDateList[tabIndex].push(entity);
-      }
-      console.log(entity);
-    } } };exports.default = _default;
+      // this.getDateList(tabIndex);
+    }
+    // getDateList: function(tabIndex) {
+    // 	for (var i = 0; i < 3; i++) {
+    // 		var entity = this.tab[tabIndex];
+    // 	
+    // 	}
+    // 	console.log(entity)
+    // }
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),

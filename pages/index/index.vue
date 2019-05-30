@@ -1,68 +1,116 @@
 <template>
 	<div class="videoList">
-		<div class="videoItem" v-for="(item,index) in 4" :key="index">
+		<div class="videoItem" v-for="(item,index) in videoList" :key="index">
 			<div class="user">
 				<div class="left">
-					<img class="user_header" src="http://p5z1781je.bkt.clouddn.com/43d626ba7bfee62c85fd42aafffb5e98" alt="">
-					<div class="user_name">你有点虎</div>
+					<img class="user_header" :src="item.head_img" @tap="getUserInfo(item.user_id)" alt="">
+					<div class="user_name">{{item.nickname}}</div>
 				</div>
-				<div class="right" @tap="del(index)">
-					<span>X</span>
-				</div>
+				<div class="right" @tap="del(index)">X</div>
 
 			</div>
 			<div class="video_detail">
-				<div class="video_title">测试</div>
-				<video src="http://videopub.actuive.com/3fc59ab8aeb70769875638d06a02cc0f.mp4"></video>
+				<div class="video_title">{{item.title}}</div>
+				<video :src="item.public_video_down_url"></video>
 			</div>
 			<div class="video_other">
 				<div class="video_like">
 					<img src="/static/矢量智能对象3.png" alt="">
-					<span>111</span>
+					<span>{{item.user_like_total==undefined?0:item.user_like_total}}</span>
 				</div>
-				<div class="video_comment">
+				<div class="video_comment" @tap="getComment(item)">
 					<img src="/static/矢量智能对象1.png" alt="">
-					<span>222</span>
+					<span>{{item.user_comment_total==undefined?0:item.user_comment_total}}</span>
 				</div>
 				<div class="video_share">
 					<img src="/static/矢量智能对象2.png" alt="">
-					<span>333</span>
+					<span>{{item.user_share_total==undefined?0:item.user_share_total}}</span>
 				</div>
 			</div>
 		</div>
-
 
 	</div>
 </template>
 
 <script>
+	// import api from "../../api/config.js";
+	// import {api} from "../../api/config.js"
+	import request from "../../utils/request.js";
 	export default {
 		data() {
 			return {
-
+				videoList: {
+					// title: "",
+					// user_like_total: "",
+					// user_comment_total: "",
+					// user_share_total: "",
+					// public_video_down_url: "",
+					// user_id: "",
+					// video_id: ""
+				},
+				commentList: {},
 			}
 		},
 		onLoad() {
-			uni.request({
-				url: "http://api-test.yixiu08.com/v1///Index/detail", //仅为示例，并非真实接口地址。
-				success: (res) => {
-					console.log(res.data);
-					this.text = 'request success';
-				}
-			});
+			//请求视频列表
+			//第一次请求不发送last_id
+			request("https://api.actuive.com/v1///Index/hot", 'post').then((res) => {
+				console.log(res, 999999)
+				this.videoList = res.data.data.video_list
+				// console.log(this.videoList,333333)
+			})
 		},
+		//下拉刷新
+		onPullDownRefresh:function(){
+			this.videoList={};
+			// console.log(this.videoList)
+			request("https://api.actuive.com/v1///Index/hot", 'post').then((res) => {
+				this.videoList = res.data.data.video_list
+				console.log(this.videoList,111111)
+			})
+			// console.log('refresh');
+			setTimeout(function() {
+				uni.stopPullDownRefresh();
+			}, 1000);
+		},
+		//触底,上拉加载更多
+		onReachBottom() {
+			this.getMoreVideo();
+		},
+		// onReachBottom:(function () {
+		// 	
+		// }),
+
 		methods: {
-			onPullDownRefresh() {
-				//刷新
-				console.log('refresh');
+			//点击用户头像的时候，显示用户的详情，根据user_id获取用户资料
+			getUserInfo(user_Id) {
+				// console.log(userId, 66666)
+				uni.navigateTo({
+					url: `../userInfo/userInfo?user_id=${user_Id}`
+				});
 			},
-			del(index){
+			//点击删除当前这个视频
+			del(index) {
 				console.log(index)
 			},
-			onReachBottom(){
-				//触底加载更多
-				console.log(111111)
+			//点击获取当前视频的评论内容,根据视频id,用户id
+			getComment(res) {
+				//跳转到评论页
+				uni.navigateTo({
+					url: `../commentList/commentList?video_id=${res.video_id}&user_id=${res.video_id}`
+				});
+			},
+			getMoreVideo() {
+				request("https://api.actuive.com/v1///Index/hot", 'post').then((res) => {
+					// console.log(res.data.data.video_list, 555555)
+					res.data.data.video_list.map(item => {
+						//将获取到的数据追加到数组后面
+						this.videoList.push(item)
+					})
+					console.log(this.videoList, 666666)
+				})
 			}
+
 		}
 	}
 </script>
@@ -97,11 +145,9 @@
 
 				.right {
 					// flex: 1;
-					display: flex;
 					justify-content: center;
 					font-size: 12px;
 					color: #333;
-					align-items: center;
 				}
 
 			}

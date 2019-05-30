@@ -25,7 +25,7 @@ export const UserDetail = (id) => {
     params: {
       user_id: id
     }
-  })
+  });
 }
 
 // 获取视频标签
@@ -43,7 +43,7 @@ export const videoListByCategory = (params) => {
 
 // 获取热门视频
 export const hotvideo = (last_id = '') => {
-  return axios.post(LongURL('/Index/hot'),{
+  return axios.post('https://api.actuive.com/v1///Index/hot'),{
     last_id
   })
 }

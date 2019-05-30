@@ -18,13 +18,25 @@
             "style" : {
 				"navigationBarTitleText": "测试"
 			}
+        },
+		{
+			"path":"pages/commentList/commentList",
+			"style":{
+				"navigationBarTitleText": "评论"
+			}
+		}
+        ,{
+            "path" : "pages/userInfo/userInfo",
+            "style" : {}
         }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		// "navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		//到底部的距离
+		"onReachBottomDistance":50
 	},
 	"tabBar":{
 		"color": "#999",

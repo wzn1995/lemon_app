@@ -24,6 +24,23 @@ createApp(app).$mount();
 
 /***/ }),
 
+/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2FcommentList%2FcommentList\"}":
+/*!************************************************************************************!*\
+  !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2FcommentList%2FcommentList"} ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _commentList = _interopRequireDefault(__webpack_require__(/*! ./pages/commentList/commentList.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/commentList/commentList.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_commentList.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
 /***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2Findex%2Findex\"}":
 /*!************************************************************************!*\
   !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2Findex%2Findex"} ***!
@@ -75,6 +92,23 @@ createPage(_test.default);
 
 /***/ }),
 
+/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2FuserInfo%2FuserInfo\"}":
+/*!******************************************************************************!*\
+  !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2FuserInfo%2FuserInfo"} ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _userInfo = _interopRequireDefault(__webpack_require__(/*! ./pages/userInfo/userInfo.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/userInfo/userInfo.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_userInfo.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
 /***/ "../../../../code/xyx_小程序/xyx_小程序/pages.json":
 /*!******************************************!*\
   !*** D:/code/xyx_小程序/xyx_小程序/pages.json ***!
@@ -84,6 +118,39 @@ createPage(_test.default);
 
 "use strict";
 
+
+/***/ }),
+
+/***/ "../../../../code/xyx_小程序/xyx_小程序/utils/request.js":
+/*!************************************************!*\
+  !*** D:/code/xyx_小程序/xyx_小程序/utils/request.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function request(url) {var method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'GET';var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  // 在这个函数中，应该调用wx.request方法发送请求，并将请求成功的结果给到promise对象中，目的是为了在其他页面调用这个函数时，能够直接使用.then()获取成功的数据
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: url,
+      method: method,
+      data: data,
+      success: function success(res) {
+        // 将成功的数据放进resolve函数中
+        resolve(res);
+      } });
+
+  });
+}
+
+// 拓展request函数
+request.get = function (url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  return uni.request(url, 'GET', data);
+};var _default =
+
+request;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 
