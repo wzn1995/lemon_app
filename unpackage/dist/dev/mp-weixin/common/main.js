@@ -81,11 +81,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 {
+
+  data: function data() {
+    return {};
+
+
+  },
   onLaunch: function onLaunch() {
-    console.log('App Launch');
+
   },
   onShow: function onShow() {
     console.log('App Show');
+
   },
   onHide: function onHide() {
     console.log('App Hide');

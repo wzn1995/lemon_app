@@ -20,6 +20,8 @@ var app = new _vue.default(_objectSpread({},
 _App.default));
 
 createApp(app).$mount();
+
+// Vue.prototype.$eventBus = new Vue();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createApp"]))
 
 /***/ }),
@@ -54,6 +56,23 @@ createPage(_commentList.default);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
 var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/index/index.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
+/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2Flogin%2Flogin\"}":
+/*!************************************************************************!*\
+  !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2Flogin%2Flogin"} ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _login = _interopRequireDefault(__webpack_require__(/*! ./pages/login/login.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/login/login.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_login.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),
@@ -121,6 +140,64 @@ createPage(_userInfo.default);
 
 /***/ }),
 
+/***/ "../../../../code/xyx_小程序/xyx_小程序/utils/api.js":
+/*!********************************************!*\
+  !*** D:/code/xyx_小程序/xyx_小程序/utils/api.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var request = __webpack_require__(/*! ./request */ "../../../../code/xyx_小程序/xyx_小程序/utils/request.js");
+
+var videoList = function videoList(data) {
+  return request.postRequest('/Index/hot', data);
+};
+var userDetail = function userDetail(data) {
+  return request.getRequest('/Index/userDetail', data);
+};
+
+var videoDetail = function videoDetail(data) {
+  return request.postRequest('/Index/detail', data);
+};
+var commentList = function commentList(data) {
+  return request.postRequest('/Index/comments', data);
+};
+var commentSubmit = function commentSubmit(data) {
+  return request.postRequest('/Video/comment', data);
+};
+var thirdLogin = function thirdLogin(data) {
+  return request.login('/UserAccount/thirdLogin', data);
+};
+
+var commentLike = function commentLike(data) {
+  return request.postRequest('/VideoComment/like', data);
+};
+var commentCancelLike = function commentCancelLike(data) {
+  return request.postRequest('/VideoComment/cancelLike', data);
+};
+// const videoLike =function(data){
+// 	return request.postRequest('/Video/like',data)
+// }
+
+// const videoLike =function(data,token){
+// 	return request.request('/Video/like',data,'',token)
+// }
+
+module.exports = {
+  videoList: videoList,
+  userDetail: userDetail,
+  videoDetail: videoDetail,
+  commentList: commentList,
+  commentSubmit: commentSubmit,
+  thirdLogin: thirdLogin,
+  commentLike: commentLike,
+  commentCancelLike: commentCancelLike
+  // videoLike
+};
+
+/***/ }),
+
 /***/ "../../../../code/xyx_小程序/xyx_小程序/utils/request.js":
 /*!************************************************!*\
   !*** D:/code/xyx_小程序/xyx_小程序/utils/request.js ***!
@@ -129,27 +206,82 @@ createPage(_userInfo.default);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function request(url) {var method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'GET';var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  // 在这个函数中，应该调用wx.request方法发送请求，并将请求成功的结果给到promise对象中，目的是为了在其他页面调用这个函数时，能够直接使用.then()获取成功的数据
-  return new Promise(function (resolve, reject) {
+/* WEBPACK VAR INJECTION */(function(uni) { // commonUrl
+// const commonUrl = "https://api.actuive.com/v1//"
+var commonUrl = "http://api-test.yixiu08.com/v1";
+
+// post请求封装
+function postRequest(url, data) {
+  var promise = new Promise(function (resolve, reject) {
+    // var that = this;
+    // var postData = data;
     uni.request({
-      url: url,
-      method: method,
+      url: commonUrl + url,
       data: data,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' },
+
       success: function success(res) {
-        // 将成功的数据放进resolve函数中
         resolve(res);
+      },
+      error: function error(e) {
+        reject('网络出错');
       } });
 
   });
+  return promise;
 }
 
-// 拓展request函数
-request.get = function (url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  return uni.request(url, 'GET', data);
-};var _default =
+// get请求封装
+function getRequest(url, data) {
+  var promise = new Promise(function (resolve, reject) {
+    // var that = this;
+    // var postData = data;
 
-request;exports.default = _default;
+    uni.request({
+      url: commonUrl + url,
+      data: data,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json' },
+
+      success: function success(res) {
+        resolve(res);
+      },
+      error: function error(e) {
+        reject('网络出错');
+      } });
+
+  });
+  return promise;
+}
+
+function login(url, data) {
+  var promise = new Promise(function (resolve, reject) {
+    uni.request({
+      url: commonUrl + url,
+      data: data,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'From': 'APPLET_H5' },
+
+      success: function success(res) {
+        resolve(res);
+      },
+      error: function error(e) {
+        reject('网络出错');
+      } });
+
+  });
+  return promise;
+}
+
+module.exports = {
+  postRequest: postRequest,
+  getRequest: getRequest,
+  login: login };
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
@@ -629,7 +761,7 @@ function getData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -6725,7 +6857,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -6746,14 +6878,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -6822,7 +6954,7 @@ var patch = function(oldVnode, vnode) {
         });
         var diffData = diff(data, mpData);
         if (Object.keys(diffData).length) {
-            if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+            if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
                 console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
                     ']差量更新',
                     JSON.stringify(diffData));

@@ -117,25 +117,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _request = _interopRequireDefault(__webpack_require__(/*! ../../utils/request.js */ "../../../../code/xyx_小程序/xyx_小程序/utils/request.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ "../../../../code/xyx_小程序/xyx_小程序/utils/api.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -153,61 +135,101 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ../../utils/reques
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// import api from "../../api/config.js";
-// import {api} from "../../api/config.js"
-var _default = { data: function data() {return { videoList: {// title: "",
+var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | components/myvideo */ "components/myvideo").then(__webpack_require__.bind(null, /*! ../../components/myvideo.vue */ "../../../../code/xyx_小程序/xyx_小程序/components/myvideo.vue"));};var other = function other() {return __webpack_require__.e(/*! import() | components/other */ "components/other").then(__webpack_require__.bind(null, /*! ../../components/other.vue */ "../../../../code/xyx_小程序/xyx_小程序/components/other.vue"));};var _default = { data: function data() {return { videoList: {// title: "",
         // user_like_total: "",
         // user_comment_total: "",
         // user_share_total: "",
         // public_video_down_url: "",
         // user_id: "",
         // video_id: ""
-      }, commentList: {} };}, onLoad: function onLoad() {var _this = this; //请求视频列表
+      }, // commentList: {},
+      // videoIsLike: 0,
+      shareDetail: {}, loginMsg: '' // 'token':
+    };}, components: { myvideo: myvideo, other: other }, created: function created() {//第三方登录获取token以及user_id等
+    uni.login({
+      provider: 'weixin',
+      scopes: 'auth_base',
+      success: function success(res) {
+        console.log(res.code, 333333);
+        _api.default.thirdLogin({
+          type: 4,
+          code: res.code }).
+        then(function (res) {
+          //将获取到的登录信息放进storage
+          uni.setStorage({
+            key: 'loginMsg',
+            data: res.data.data,
+            success: function success() {
+              console.log('获取登录验证成功');
+            } });
+
+        });
+      } });
+
+  },
+
+  mounted: function mounted() {var _this = this;
+
+    //获取到storage的数据，放进data中
+    var that = this;
+    uni.getStorage({
+      key: 'loginMsg',
+      success: function success(res) {
+        that.loginMsg = res.data;
+        console.log(that.loginMsg, 445566);
+      } });
+
+
+    //请求视频列表
     //第一次请求不发送last_id
-    (0, _request.default)("https://api.actuive.com/v1///Index/hot", 'post').then(function (res) {console.log(res, 999999);_this.videoList = res.data.data.video_list; // console.log(this.videoList,333333)
-    });}, //下拉刷新
-  onPullDownRefresh: function onPullDownRefresh() {var _this2 = this;this.videoList = {}; // console.log(this.videoList)
-    (0, _request.default)("https://api.actuive.com/v1///Index/hot", 'post').then(function (res) {_this2.videoList = res.data.data.video_list;console.log(_this2.videoList, 111111);}); // console.log('refresh');
-    setTimeout(function () {uni.stopPullDownRefresh();}, 1000);}, //触底,上拉加载更多
-  onReachBottom: function onReachBottom() {this.getMoreVideo();}, // onReachBottom:(function () {
-  // 	
-  // }),
-  methods: { //点击用户头像的时候，显示用户的详情，根据user_id获取用户资料
-    getUserInfo: function getUserInfo(user_Id) {// console.log(userId, 66666)
-      uni.navigateTo({ url: "../userInfo/userInfo?user_id=".concat(user_Id) });}, //点击删除当前这个视频
-    del: function del(index) {console.log(index);
-    },
-    //点击获取当前视频的评论内容,根据视频id,用户id
-    getComment: function getComment(res) {
-      //跳转到评论页
+    _api.default.videoList().then(function (res) {
+      _this.videoList = res.data.data.video_list;
+      console.log(_this.videoList, 444444);
+    });
+  },
+  //下拉刷新
+  onPullDownRefresh: function onPullDownRefresh() {var _this2 = this;
+    this.videoList = {};
+    // console.log(this.videoList)
+    _api.default.videoList().then(function (res) {
+      // console.log(res, 999999)
+      _this2.videoList = res.data.data.video_list;
+    });
+    setTimeout(function () {
+      uni.stopPullDownRefresh();
+    }, 1000);
+  },
+  //触底,上拉加载更多
+  onReachBottom: function onReachBottom() {
+    console.log('触底了');
+    // console.log(this.videoList)
+    var index = this.videoList.length - 1;
+    var last_id = this.videoList[index].video_id;
+    // console.log(last_id)
+    this.getMoreVideo(last_id);
+  },
+
+  methods: {
+    //点击用户头像的时候，显示用户的详情，根据user_id获取用户资料
+    getUserInfo: function getUserInfo(user_Id) {
+      // console.log(userId, 66666)
       uni.navigateTo({
-        url: "../commentList/commentList?video_id=".concat(res.video_id, "&user_id=").concat(res.video_id) });
+        url: "../userInfo/userInfo?user_id=".concat(user_Id) });
 
     },
-    getMoreVideo: function getMoreVideo() {var _this3 = this;
-      (0, _request.default)("https://api.actuive.com/v1///Index/hot", 'post').then(function (res) {
-        // console.log(res.data.data.video_list, 555555)
+    //点击删除当前这个视频
+    del: function del(index) {
+      console.log(index);
+      this.videoList.splice(index, 1);
+    },
+
+    getMoreVideo: function getMoreVideo(last_id) {var _this3 = this;
+      _api.default.videoList({
+        last_id: last_id }).
+      then(function (res) {
         res.data.data.video_list.map(function (item) {
-          //将获取到的数据追加到数组后面
           _this3.videoList.push(item);
         });
-        console.log(_this3.videoList, 666666);
       });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))

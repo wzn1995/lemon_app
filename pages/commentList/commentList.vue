@@ -2,86 +2,81 @@
 	<!-- <div>评论页</div> -->
 	<div class="page">
 		<div class="video_detail">
-			<div class="videoBox"><video :src="videoDetail.public_video_down_url"></video></div>
+			<div class="videoBox"><video :src="videoDetail.public_video_down_url" :poster="videoDetail.cover_img"></video></div>
 			<div class="title">
 				<div class="left">{{videoDetail.title}}</div>
 				<div class="right">X</div>
 			</div>
-			<div class="video_other">
-				<div class="video_like">
-					<img src="/static/矢量智能对象3.png" alt="">
-					<span>{{videoDetail.user_like_total==undefined?0:videoDetail.user_like_total}}</span>
-				</div>
-				<div class="video_comment" @tap="getComment(item)">
-					<img src="/static/矢量智能对象1.png" alt="">
-					<span>{{videoDetail.user_comment_total==undefined?0:videoDetail.user_comment_total}}</span>
-				</div>
-				<div class="video_share">
-					<img src="/static/矢量智能对象2.png" alt="">
-					<span>{{videoDetail.user_share_total==undefined?0:videoDetail.user_share_total}}</span>
-				</div>
-			</div>
+			<others :others="videoDetail"></others>
 		</div>
-		<div class="commentList">
-			<div class="commentItem" v-for="(item,index) in commentList" :key="index">
-				<div class="top">
-					<img class="user_head" :src="item.head_img" alt="" @tap="getUserInfo(item.user_id)">
-					<div class="info">
-						<div class="user_name">{{item.nickname}}</div>
-						<div class="creat_time">{{item.create_time}}</div>
+		<comment :commentList="commentList" :videoDetail="videoDetail" :submitDetail="submitDetail"></comment>
 
-					</div>
-					<div class="user_like">
-						<img src="/static/矢量智能对象3.png" alt="">
-						<span>{{item.like_total}}</span>
-					</div>
-				</div>
-				<div class="comment">{{item.comment}}</div>
-			</div>
-			<div class="noMore">我也是有底线的</div>
-		</div>
-		<div class="submitComment">
-			<div class="text"> <input type="text" placeholder="想说点什么..."></div>
-			<div class="btn"><span>发表</span></div>
-		</div>
 	</div>
 </template>
 
 <script>
-	import request from "../../utils/request.js";
+	import api from "../../utils/api.js";
+	import myvideo from "../../components/myvideo.vue"
+	import others from "../../components/others.vue"
+	import comment from "../../components/comment.vue"
 	export default {
 		data() {
 			return {
 				videoDetail: {},
-				commentList: {}
+				commentList: {},
+				submitDetail: {},
 			}
+		},
+		components: {
+			myvideo,
+			others,
+			comment
 		},
 		onLoad(option) {
 			// console.log(option,54321)
 			//先根据video_id获取到视频详情，下面再根据video_id和user_id获取评论内容
-			request("https://api.actuive.com/v1///Index/detail", 'post', {
-				video_id: option.video_id,
-			}).then((video_detail) => {
-				// console.log(video_detail, 1111111)
+			api.videoDetail({
+				video_id: option.video_id
+			}).then(video_detail => {
 				this.videoDetail = video_detail.data.data.video_detail
-				return request("https://api.actuive.com/v1///Index/comments", 'post', {
+				console.log(this.videoDetail, 11111) //这里有一个user_id,默认是这个作为回复对象
+
+				this.submitDetail.video_id = this.videoDetail.video_id //赋值video_id
+				this.submitDetail.parent_id = this.videoDetail.user_id; //给默认parent_id赋值
+				console.log(this.submitDetail, 88888)
+				return api.commentList({
 					video_id: option.video_id,
 					user_id: option.user_id
-				}).then((comment_detail) => {
-					// console.log(comment_detail, 22222222)
-					this.commentList = comment_detail.data.data.comment_list
-					document.querySelector('.noMore').style.display = 'block'
 				})
+			}).then(comment_detail => {
+				// console.log(comment_detail, 3333)
+				this.commentList = comment_detail.data.data.comment_list
+				console.log(this.commentList,2222)
+				// document.querySelector('.noMore').style.display = 'block'
 			})
 
 		},
+		onReachBottom() {
+			console.log('加载更多')
+			let index=this.commentList.length-1
+			let last_id=this.commentList[index].comment_id
+			// console.log(last_id,333)
+			api.commentList({
+				//这些数据在videoDetail中
+				video_id: this.videoDetail.video_id,  //当前视频id
+				user_id: this.videoDetail.user_id,		//视频的用户id
+				last_id: last_id					//评论最后一条的id ,在commentList中comment_id
+			}).then(res=>{
+				console.log(res,444444)
+				res.data.data.comment_list.map(item=>{
+					this.commentList.push(item)
+				})
+				
+				console.log(this.commentList)
+			})
+		},
 		methods: {
-			getUserInfo(user_id) {
-				// console.log(user_id)
-				uni.navigateTo({
-					url: `../userInfo/userInfo?user_id=${user_id}`
-				});
-			}
+
 		}
 	}
 </script>
@@ -125,7 +120,7 @@
 					align-items: center;
 					justify-content: center;
 
-					img {
+					image {
 						width: 20px;
 						height: 20px;
 						margin-right: 5px;
@@ -136,114 +131,6 @@
 					}
 				}
 
-			}
-		}
-
-		.commentList {
-			padding: 10px 20px;
-			overflow: scroll;
-
-			.commentItem {
-				margin-bottom: 10px;
-
-				.top {
-					display: flex;
-					align-items: center;
-					height: 40px;
-					background: #ccc;
-
-					.user_head {
-						width: 30px;
-						height: 30px;
-						border-radius: 50%;
-						margin-right: 10px;
-						// flex: 1;
-					}
-
-					.info {
-						flex: 5;
-						display: flex;
-						flex-direction: column;
-						justify-content: center;
-
-						.user_name {
-							// margin-bottom: 10px;
-							font-size: 12px;
-						}
-
-						.creat_time {
-							font-size: 12px;
-						}
-					}
-
-					.user_like {
-						display: flex;
-
-						img {
-							width: 20px;
-							height: 20px;
-						}
-
-						span {
-							font-size: 12px;
-						}
-					}
-				}
-
-				.comment {
-					background: pink;
-					padding-left: 40px;
-				}
-			}
-
-			.noMore {
-				display: none;
-				height: 80px;
-				line-height: 40px;
-				text-align: center;
-				font-size: 14px;
-				color: #ccc;
-
-			}
-		}
-
-		.submitComment {
-			background: pink;
-			padding: 10px;
-			display: flex;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			right: 0;
-
-			.text {
-				flex: 5;
-				background: #ccc;
-				border-radius: 5px;
-				margin-right: 20px;
-				box-sizing: border-box;
-				height: 30px;
-
-				// line-height: 30px;
-				span {
-					margin-left: 10px;
-					font-size: 12px;
-					color: #333;
-				}
-			}
-
-			.btn {
-
-				flex: 1;
-				background: #333;
-				text-align: center;
-				box-sizing: border-box;
-				border-radius: 5px;
-
-				span {
-					font-size: 14px;
-					color: #ccc;
-				}
 			}
 		}
 	}

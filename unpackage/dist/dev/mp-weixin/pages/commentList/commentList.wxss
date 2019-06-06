@@ -74,9 +74,9 @@
           -ms-flex-pack: center;
               justify-content: center;
 }
-.page .video_detail .video_other .video_like ._img.data-v-a6099b78,
-      .page .video_detail .video_other .video_comment ._img.data-v-a6099b78,
-      .page .video_detail .video_other .video_share ._img.data-v-a6099b78 {
+.page .video_detail .video_other .video_like image.data-v-a6099b78,
+      .page .video_detail .video_other .video_comment image.data-v-a6099b78,
+      .page .video_detail .video_other .video_share image.data-v-a6099b78 {
         width: 20px;
         height: 20px;
         margin-right: 5px;
@@ -85,124 +85,5 @@
       .page .video_detail .video_other .video_comment ._span.data-v-a6099b78,
       .page .video_detail .video_other .video_share ._span.data-v-a6099b78 {
         font-size: 14px;
-}
-.page .commentList.data-v-a6099b78 {
-    padding: 10px 20px;
-    overflow: scroll;
-}
-.page .commentList .commentItem.data-v-a6099b78 {
-      margin-bottom: 10px;
-}
-.page .commentList .commentItem .top.data-v-a6099b78 {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-            -ms-flex-align: center;
-                align-items: center;
-        height: 40px;
-        background: #ccc;
-}
-.page .commentList .commentItem .top .user_head.data-v-a6099b78 {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          margin-right: 10px;
-}
-.page .commentList .commentItem .top .info.data-v-a6099b78 {
-          -webkit-box-flex: 5;
-          -webkit-flex: 5;
-              -ms-flex: 5;
-                  flex: 5;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-orient: vertical;
-          -webkit-box-direction: normal;
-          -webkit-flex-direction: column;
-              -ms-flex-direction: column;
-                  flex-direction: column;
-          -webkit-box-pack: center;
-          -webkit-justify-content: center;
-              -ms-flex-pack: center;
-                  justify-content: center;
-}
-.page .commentList .commentItem .top .info .user_name.data-v-a6099b78 {
-            font-size: 12px;
-}
-.page .commentList .commentItem .top .info .creat_time.data-v-a6099b78 {
-            font-size: 12px;
-}
-.page .commentList .commentItem .top .user_like.data-v-a6099b78 {
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display: flex;
-}
-.page .commentList .commentItem .top .user_like ._img.data-v-a6099b78 {
-            width: 20px;
-            height: 20px;
-}
-.page .commentList .commentItem .top .user_like ._span.data-v-a6099b78 {
-            font-size: 12px;
-}
-.page .commentList .commentItem .comment.data-v-a6099b78 {
-        background: pink;
-        padding-left: 40px;
-}
-.page .commentList .noMore.data-v-a6099b78 {
-      display: none;
-      height: 80px;
-      line-height: 40px;
-      text-align: center;
-      font-size: 14px;
-      color: #ccc;
-}
-.page .submitComment.data-v-a6099b78 {
-    background: pink;
-    padding: 10px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-.page .submitComment .text.data-v-a6099b78 {
-      -webkit-box-flex: 5;
-      -webkit-flex: 5;
-          -ms-flex: 5;
-              flex: 5;
-      background: #ccc;
-      border-radius: 5px;
-      margin-right: 20px;
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-      height: 30px;
-}
-.page .submitComment .text ._span.data-v-a6099b78 {
-        margin-left: 10px;
-        font-size: 12px;
-        color: #333;
-}
-.page .submitComment .btn.data-v-a6099b78 {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-          -ms-flex: 1;
-              flex: 1;
-      background: #333;
-      text-align: center;
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-      border-radius: 5px;
-}
-.page .submitComment .btn ._span.data-v-a6099b78 {
-        font-size: 14px;
-        color: #ccc;
 }
 

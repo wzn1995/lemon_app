@@ -1,0 +1,1 @@
+<view class="video_detail _div" bind:__l="__l"><view class="video_title _div">{{details.title}}</view><video id="{{details.video_id+''}}" poster="{{details.cover_img}}" src="{{details.public_video_down_url}}" controls data-event-opts="{{[['play',[['onplay',['$event']]]]]}}" bindplay="__e"></video></view>

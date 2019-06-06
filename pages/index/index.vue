@@ -7,35 +7,20 @@
 					<div class="user_name">{{item.nickname}}</div>
 				</div>
 				<div class="right" @tap="del(index)">X</div>
-
 			</div>
-			<div class="video_detail">
-				<div class="video_title">{{item.title}}</div>
-				<video :src="item.public_video_down_url"></video>
-			</div>
-			<div class="video_other">
-				<div class="video_like">
-					<img src="/static/矢量智能对象3.png" alt="">
-					<span>{{item.user_like_total==undefined?0:item.user_like_total}}</span>
-				</div>
-				<div class="video_comment" @tap="getComment(item)">
-					<img src="/static/矢量智能对象1.png" alt="">
-					<span>{{item.user_comment_total==undefined?0:item.user_comment_total}}</span>
-				</div>
-				<div class="video_share">
-					<img src="/static/矢量智能对象2.png" alt="">
-					<span>{{item.user_share_total==undefined?0:item.user_share_total}}</span>
-				</div>
-			</div>
+			<myvideo :details="item"></myvideo>
+			<other :other="item"></other>
+		
 		</div>
 
 	</div>
 </template>
 
 <script>
-	// import api from "../../api/config.js";
-	// import {api} from "../../api/config.js"
-	import request from "../../utils/request.js";
+	import api from "../../utils/api.js"
+	import myvideo from "../../components/myvideo.vue"
+	import other from "../../components/other.vue"
+
 	export default {
 		data() {
 			return {
@@ -48,38 +33,81 @@
 					// user_id: "",
 					// video_id: ""
 				},
-				commentList: {},
+				// commentList: {},
+				// videoIsLike: 0,
+				shareDetail: {},
+				loginMsg:''
+				// 'token':
 			}
 		},
-		onLoad() {
+		components: {
+			myvideo,
+			other,
+		},
+		created() {
+			//第三方登录获取token以及user_id等
+			uni.login({
+				provider: 'weixin',
+				scopes: 'auth_base',
+				success(res) {
+					console.log(res.code, 333333)
+					api.thirdLogin({
+						type: 4,
+						code: res.code
+					}).then(res => {
+						//将获取到的登录信息放进storage
+						uni.setStorage({
+							key: 'loginMsg',
+							data: res.data.data,
+							success() {
+								console.log('获取登录验证成功')
+							}
+						})
+					})
+				}
+			})
+		},
+
+		mounted() {
+			
+			//获取到storage的数据，放进data中
+			let that=this;
+			uni.getStorage({
+				key: 'loginMsg',
+				success: function(res) {
+					that.loginMsg=res.data
+					console.log(that.loginMsg,445566)
+				}
+			})
+
 			//请求视频列表
 			//第一次请求不发送last_id
-			request("https://api.actuive.com/v1///Index/hot", 'post').then((res) => {
-				console.log(res, 999999)
+			api.videoList().then((res) => {	
 				this.videoList = res.data.data.video_list
-				// console.log(this.videoList,333333)
+				console.log(this.videoList, 444444)
 			})
 		},
 		//下拉刷新
-		onPullDownRefresh:function(){
-			this.videoList={};
+		onPullDownRefresh: function() {
+			this.videoList = {};
 			// console.log(this.videoList)
-			request("https://api.actuive.com/v1///Index/hot", 'post').then((res) => {
+			api.videoList().then((res) => {
+				// console.log(res, 999999)
 				this.videoList = res.data.data.video_list
-				console.log(this.videoList,111111)
 			})
-			// console.log('refresh');
 			setTimeout(function() {
 				uni.stopPullDownRefresh();
 			}, 1000);
 		},
 		//触底,上拉加载更多
 		onReachBottom() {
-			this.getMoreVideo();
+			console.log('触底了')
+			// console.log(this.videoList)
+			let index=this.videoList.length-1
+			let last_id=this.videoList[index].video_id
+			// console.log(last_id)
+			this.getMoreVideo(last_id);
 		},
-		// onReachBottom:(function () {
-		// 	
-		// }),
 
 		methods: {
 			//点击用户头像的时候，显示用户的详情，根据user_id获取用户资料
@@ -92,30 +120,25 @@
 			//点击删除当前这个视频
 			del(index) {
 				console.log(index)
+				this.videoList.splice(index, 1)
 			},
-			//点击获取当前视频的评论内容,根据视频id,用户id
-			getComment(res) {
-				//跳转到评论页
-				uni.navigateTo({
-					url: `../commentList/commentList?video_id=${res.video_id}&user_id=${res.video_id}`
-				});
-			},
-			getMoreVideo() {
-				request("https://api.actuive.com/v1///Index/hot", 'post').then((res) => {
-					// console.log(res.data.data.video_list, 555555)
+		
+			getMoreVideo(last_id) {
+				api.videoList({
+					last_id
+				}).then((res) => {
 					res.data.data.video_list.map(item => {
-						//将获取到的数据追加到数组后面
 						this.videoList.push(item)
 					})
-					console.log(this.videoList, 666666)
 				})
-			}
+			},
 
 		}
 	}
 </script>
 
 <style scoped lang="scss">
+
 	.videoList {
 		.videoItem {
 			border-bottom: 2px solid #ccc;
@@ -153,6 +176,10 @@
 			}
 
 			.video_detail {
+				position: relative;
+
+				// width:100%;
+				// height: 225px;
 				.video_title {
 					padding: 10px;
 				}
@@ -160,28 +187,22 @@
 				video {
 					width: 100%;
 				}
-			}
 
-			.video_other {
-				display: flex;
-				padding: 10px;
+				.cover_img {
+					position: absolute;
+					left: 0;
+					bottom: 4px;
+					width: 100%;
+					height: 225px;
+				}
 
-				.video_like,
-				.video_comment,
-				.video_share {
-					flex: 1;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-
-					img {
-						width: 20px;
-						height: 20px;
-					}
-
-					span {
-						font-size: 14px;
-					}
+				.play {
+					width: 40px;
+					height: 40px;
+					position: absolute;
+					left: 50%;
+					bottom: 30%;
+					transform: translate(-50%, -40%)
 				}
 
 			}

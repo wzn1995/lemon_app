@@ -9,3 +9,5 @@ const app = new Vue({
     ...App
 })
 app.$mount()
+
+// Vue.prototype.$eventBus = new Vue();

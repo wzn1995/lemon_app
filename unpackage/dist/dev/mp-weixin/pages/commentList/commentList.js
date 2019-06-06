@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -115,40 +115,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _request = _interopRequireDefault(__webpack_require__(/*! ../../utils/request.js */ "../../../../code/xyx_小程序/xyx_小程序/utils/request.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ "../../../../code/xyx_小程序/xyx_小程序/utils/api.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -164,46 +131,51 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ../../utils/reques
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { videoDetail: {}, commentList: {} };}, onLoad: function onLoad(option) {var _this = this; // console.log(option,54321)
+var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | components/myvideo */ "components/myvideo").then(__webpack_require__.bind(null, /*! ../../components/myvideo.vue */ "../../../../code/xyx_小程序/xyx_小程序/components/myvideo.vue"));};var others = function others() {return __webpack_require__.e(/*! import() | components/others */ "components/others").then(__webpack_require__.bind(null, /*! ../../components/others.vue */ "../../../../code/xyx_小程序/xyx_小程序/components/others.vue"));};var comment = function comment() {return __webpack_require__.e(/*! import() | components/comment */ "components/comment").then(__webpack_require__.bind(null, /*! ../../components/comment.vue */ "../../../../code/xyx_小程序/xyx_小程序/components/comment.vue"));};var _default = { data: function data() {return { videoDetail: {}, commentList: {}, submitDetail: {} };}, components: { myvideo: myvideo, others: others, comment: comment },
+  onLoad: function onLoad(option) {var _this = this;
+    // console.log(option,54321)
     //先根据video_id获取到视频详情，下面再根据video_id和user_id获取评论内容
-    (0, _request.default)("https://api.actuive.com/v1///Index/detail", 'post', { video_id: option.video_id }).then(function (video_detail) {// console.log(video_detail, 1111111)
-      _this.videoDetail = video_detail.data.data.video_detail;return (0, _request.default)("https://api.actuive.com/v1///Index/comments", 'post', { video_id: option.video_id, user_id: option.user_id }).then(function (comment_detail) {// console.log(comment_detail, 22222222)
-        _this.commentList = comment_detail.data.data.comment_list;document.querySelector('.noMore').style.display = 'block';});});}, methods: { getUserInfo: function getUserInfo(user_id) {// console.log(user_id)
-      uni.navigateTo({ url: "../userInfo/userInfo?user_id=".concat(user_id) });} } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
+    _api.default.videoDetail({
+      video_id: option.video_id }).
+    then(function (video_detail) {
+      _this.videoDetail = video_detail.data.data.video_detail;
+      console.log(_this.videoDetail, 11111); //这里有一个user_id,默认是这个作为回复对象
+
+      _this.submitDetail.video_id = _this.videoDetail.video_id; //赋值video_id
+      _this.submitDetail.parent_id = _this.videoDetail.user_id; //给默认parent_id赋值
+      console.log(_this.submitDetail, 88888);
+      return _api.default.commentList({
+        video_id: option.video_id,
+        user_id: option.user_id });
+
+    }).then(function (comment_detail) {
+      // console.log(comment_detail, 3333)
+      _this.commentList = comment_detail.data.data.comment_list;
+      console.log(_this.commentList, 2222);
+      // document.querySelector('.noMore').style.display = 'block'
+    });
+
+  },
+  onReachBottom: function onReachBottom() {var _this2 = this;
+    console.log('加载更多');
+    var index = this.commentList.length - 1;
+    var last_id = this.commentList[index].comment_id;
+    // console.log(last_id,333)
+    _api.default.commentList({
+      //这些数据在videoDetail中
+      video_id: this.videoDetail.video_id, //当前视频id
+      user_id: this.videoDetail.user_id, //视频的用户id
+      last_id: last_id //评论最后一条的id ,在commentList中comment_id
+    }).then(function (res) {
+      console.log(res, 444444);
+      res.data.data.comment_list.map(function (item) {
+        _this2.commentList.push(item);
+      });
+
+      console.log(_this2.commentList);
+    });
+  },
+  methods: {} };exports.default = _default;
 
 /***/ }),
 

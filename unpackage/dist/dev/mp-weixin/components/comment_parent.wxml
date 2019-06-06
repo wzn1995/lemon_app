@@ -1,0 +1,1 @@
+<view bind:__l="__l"><view class="comment_parent_top _div"><image class="head_img" src="{{comment_parent.head_img}}" alt></image><label class="nickname _span">{{comment_parent.nickname}}</label><view class="comment_time _div">{{comment_parent.create_time}}</view></view></view>

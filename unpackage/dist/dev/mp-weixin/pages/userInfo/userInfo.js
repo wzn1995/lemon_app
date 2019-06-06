@@ -134,7 +134,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _request = _interopRequireDefault(__webpack_require__(/*! ../../utils/request.js */ "../../../../code/xyx_小程序/xyx_小程序/utils/request.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ "../../../../code/xyx_小程序/xyx_小程序/utils/api.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -171,7 +171,15 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ../../utils/reques
 //
 var _default = { data: function data() {return { userDetail: {}, videoList: [] };}, onLoad: function onLoad(option) {var _this = this; // console.log(option, 555555)
     //获取用户详情
-    (0, _request.default)("https://api.actuive.com/v1///Index/userDetail", 'get', { user_id: option.user_id }).then(function (res) {console.log(res, 111111);_this.userDetail = res.data.data.detail;_this.videoList = res.data.data.video_list;});} //上拉加载，请求/User/VideoList，传入last_id,page_size
+    // request("https://api.actuive.com/v1///Index/userDetail", 'get', {
+    // 	user_id: option.user_id
+    // }).then((res) => {
+    // 	console.log(res, 111111)
+    // 	this.userDetail=res.data.data.detail
+    // 	this.videoList=res.data.data.video_list
+    // })
+    _api.default.userDetail({ user_id: option.user_id }).then(function (res) {// console.log(res,99999)
+      _this.userDetail = res.data.data.detail;_this.videoList = res.data.data.video_list;console.log(_this.userDetail, 44444);console.log(_this.videoList, 55555);});} //上拉加载，请求/User/VideoList，传入last_id,page_size
 };exports.default = _default;
 
 /***/ }),

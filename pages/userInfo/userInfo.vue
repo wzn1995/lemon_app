@@ -34,7 +34,7 @@
 </template>
 
 <script>
-	import request from "../../utils/request.js";
+	import api from "../../utils/api.js";
 	export default {
 		data() {
 			return {
@@ -45,13 +45,21 @@
 		onLoad(option) {
 			// console.log(option, 555555)
 			//获取用户详情
-			request("https://api.actuive.com/v1///Index/userDetail", 'get', {
-				user_id: option.user_id
-			}).then((res) => {
-				console.log(res, 111111)
+			// request("https://api.actuive.com/v1///Index/userDetail", 'get', {
+			// 	user_id: option.user_id
+			// }).then((res) => {
+			// 	console.log(res, 111111)
+			// 	this.userDetail=res.data.data.detail
+			// 	this.videoList=res.data.data.video_list
+			// })
+			api.userDetail({user_id: option.user_id}).then((res)=>{
+				// console.log(res,99999)
 				this.userDetail=res.data.data.detail
 				this.videoList=res.data.data.video_list
+				console.log(this.userDetail,44444)
+				console.log(this.videoList,55555)
 			})
+			
 		}
 		//上拉加载，请求/User/VideoList，传入last_id,page_size
 	}
@@ -155,6 +163,7 @@
 						color: #fff;
 						img {
 							width: 15px;
+							height: 15px;
 							margin-right: 5px;
 						}
 					}
