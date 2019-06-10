@@ -2,7 +2,7 @@
   "navigationBarTitleText": "评论",
   "usingComponents": {
     "myvideo": "/components/myvideo",
-    "others": "/components/others",
+    "com-other": "/components/com_other",
     "comment": "/components/comment"
   }
 }

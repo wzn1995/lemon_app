@@ -6,9 +6,10 @@
 			<div class="creat_time">{{comment.create_time}}</div>
 		</div>
 		<div class="user_like">
-			<image :src="like==0?'/static/3.png':'/static/9.png'" alt="" @tap="commentLike(comment)"></image>
+			<image :src="comment.user_comment_like==0?'/static/3.png':'/static/9.png'" alt="" @tap="commentLike(comment)"></image>
 			<span>{{comment.like_total}}</span>
 			<!-- <span>{{like}}</span> -->
+			
 		</div>
 	</div>
 
@@ -19,33 +20,44 @@
 	export default {
 		data() {
 			return {
-				'like':''
+				'like': false
 			};
 		},
-		props:['comment','isLike'],
+		props: ['comment', 'loginMsg','videoDetail'],
 		mounted() {
-			// console.log(this.isLike,44555666)
-			this.like=this.isLike
+			// console.log(this.comment,44555666)
+			// this.like=this.isLike
+			// console.log(this.videoDetail, 11111)
 		},
-		methods:{
-			commentLike(res){
+		methods: {
+			commentLike(res) {
 				// console.log(res,8888)
-				this.like=!this.like
-				console.log(this.like,777)
-				if(this.like){
-					api.commentLike({comment_id:res.comment_id,op:1}).then(res=>{
+				this.like = !this.like
+				// console.log(this.like, 777)
+				if (this.like) {
+					api.commentLike({
+						comment_id: res.comment_id,
+						op: 1
+					}, this.loginMsg.access_token).then(res => {
 						//点赞
-						// this.comment.like_total++
-						// console.log()
+						this.comment.like_total++
+						console.log(res, '评论点赞')
+						this.like=true
 					})
-				}else {
-					api.commentCancelLike({comment_id:res.comment_id}).then(res=>{
-						console.log(res)
-						// this.comment.like_total--
+				} else {
+					api.commentCancelLike({
+						comment_id: res.comment_id
+					}, this.loginMsg.access_token).then(res => {
+						console.log(res, '评论取消点赞')
+						this.comment.like_total--
+						this.like=false
 						//取消点赞
 					})
 				}
-				
+				// uni.redirectTo({
+				// 	url: `../commentList/commentList?video_id=${this.videoDetail.video_id}&user_id=${this.videoDetail.user_id}`
+				// })
+
 			}
 		}
 	}

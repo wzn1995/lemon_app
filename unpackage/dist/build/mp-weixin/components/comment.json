@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "comtop": "/components/comment_top",
+    "comparent": "/components/comment_parent"
+  },
+  "component": true
+}

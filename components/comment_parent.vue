@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<!-- 二级评论 -->
 		<div class="comment_parent_top">
 			<image class="head_img" :src="comment_parent.head_img" alt></image>
 			<span class="nickname">{{comment_parent.nickname}}</span>

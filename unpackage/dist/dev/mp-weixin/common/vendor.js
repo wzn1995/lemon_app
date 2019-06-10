@@ -1,20 +1,21 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js":
-/*!***************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/main.js ***!
-  \***************************************/
+/***/ "../../../../code/uni-app project/lemon_app/main.js":
+/*!*************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/main.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+/* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ "../../../../code/uni-app project/lemon_app/pages.json");
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ "../../../../code/xyx_小程序/xyx_小程序/App.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ "../../../../code/uni-app project/lemon_app/App.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 
 _vue.default.config.productionTip = false;
 
 _App.default.mpType = 'app';
+
 
 var app = new _vue.default(_objectSpread({},
 _App.default));
@@ -26,112 +27,112 @@ createApp(app).$mount();
 
 /***/ }),
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2FcommentList%2FcommentList\"}":
-/*!************************************************************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2FcommentList%2FcommentList"} ***!
-  \************************************************************************************/
+/***/ "../../../../code/uni-app project/lemon_app/main.js?{\"page\":\"pages%2FcommentList%2FcommentList\"}":
+/*!**********************************************************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/main.js?{"page":"pages%2FcommentList%2FcommentList"} ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/uni-app project/lemon_app/pages.json");
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _commentList = _interopRequireDefault(__webpack_require__(/*! ./pages/commentList/commentList.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/commentList/commentList.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _commentList = _interopRequireDefault(__webpack_require__(/*! ./pages/commentList/commentList.vue */ "../../../../code/uni-app project/lemon_app/pages/commentList/commentList.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_commentList.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2Findex%2Findex\"}":
-/*!************************************************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2Findex%2Findex"} ***!
-  \************************************************************************/
+/***/ "../../../../code/uni-app project/lemon_app/main.js?{\"page\":\"pages%2Findex%2Findex\"}":
+/*!**********************************************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/main.js?{"page":"pages%2Findex%2Findex"} ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/uni-app project/lemon_app/pages.json");
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/index/index.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ "../../../../code/uni-app project/lemon_app/pages/index/index.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2Flogin%2Flogin\"}":
-/*!************************************************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2Flogin%2Flogin"} ***!
-  \************************************************************************/
+/***/ "../../../../code/uni-app project/lemon_app/main.js?{\"page\":\"pages%2Flogin%2Flogin\"}":
+/*!**********************************************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/main.js?{"page":"pages%2Flogin%2Flogin"} ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/uni-app project/lemon_app/pages.json");
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _login = _interopRequireDefault(__webpack_require__(/*! ./pages/login/login.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/login/login.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _login = _interopRequireDefault(__webpack_require__(/*! ./pages/login/login.vue */ "../../../../code/uni-app project/lemon_app/pages/login/login.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_login.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2Fmy%2Fmy\"}":
-/*!******************************************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2Fmy%2Fmy"} ***!
-  \******************************************************************/
+/***/ "../../../../code/uni-app project/lemon_app/main.js?{\"page\":\"pages%2Fmy%2Fmy\"}":
+/*!****************************************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/main.js?{"page":"pages%2Fmy%2Fmy"} ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/uni-app project/lemon_app/pages.json");
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _my = _interopRequireDefault(__webpack_require__(/*! ./pages/my/my.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/my/my.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _my = _interopRequireDefault(__webpack_require__(/*! ./pages/my/my.vue */ "../../../../code/uni-app project/lemon_app/pages/my/my.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_my.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2Ftest%2Ftest\"}":
-/*!**********************************************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2Ftest%2Ftest"} ***!
-  \**********************************************************************/
+/***/ "../../../../code/uni-app project/lemon_app/main.js?{\"page\":\"pages%2Ftest%2Ftest\"}":
+/*!********************************************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/main.js?{"page":"pages%2Ftest%2Ftest"} ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/uni-app project/lemon_app/pages.json");
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _test = _interopRequireDefault(__webpack_require__(/*! ./pages/test/test.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/test/test.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _test = _interopRequireDefault(__webpack_require__(/*! ./pages/test/test.vue */ "../../../../code/uni-app project/lemon_app/pages/test/test.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_test.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/main.js?{\"page\":\"pages%2FuserInfo%2FuserInfo\"}":
-/*!******************************************************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/main.js?{"page":"pages%2FuserInfo%2FuserInfo"} ***!
-  \******************************************************************************/
+/***/ "../../../../code/uni-app project/lemon_app/main.js?{\"page\":\"pages%2FuserInfo%2FuserInfo\"}":
+/*!****************************************************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/main.js?{"page":"pages%2FuserInfo%2FuserInfo"} ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/xyx_小程序/xyx_小程序/pages.json");
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../code/uni-app project/lemon_app/pages.json");
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _userInfo = _interopRequireDefault(__webpack_require__(/*! ./pages/userInfo/userInfo.vue */ "../../../../code/xyx_小程序/xyx_小程序/pages/userInfo/userInfo.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _userInfo = _interopRequireDefault(__webpack_require__(/*! ./pages/userInfo/userInfo.vue */ "../../../../code/uni-app project/lemon_app/pages/userInfo/userInfo.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_userInfo.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/pages.json":
-/*!******************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/pages.json ***!
-  \******************************************/
+/***/ "../../../../code/uni-app project/lemon_app/pages.json":
+/*!****************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/pages.json ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -140,45 +141,46 @@ createPage(_userInfo.default);
 
 /***/ }),
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/utils/api.js":
-/*!********************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/utils/api.js ***!
-  \********************************************/
+/***/ "../../../../code/uni-app project/lemon_app/utils/api.js":
+/*!******************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/utils/api.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var request = __webpack_require__(/*! ./request */ "../../../../code/xyx_小程序/xyx_小程序/utils/request.js");
+var request = __webpack_require__(/*! ./request */ "../../../../code/uni-app project/lemon_app/utils/request.js");
 
-var videoList = function videoList(data) {
-  return request.postRequest('/Index/hot', data);
+var videoList = function videoList(data, token) {
+  return request.postRequest('/Index/hot', data, token);
 };
-var userDetail = function userDetail(data) {
-  return request.getRequest('/Index/userDetail', data);
+var userDetail = function userDetail(data, token) {
+  return request.getRequest('/Index/userDetail', data, token);
 };
 
-var videoDetail = function videoDetail(data) {
-  return request.postRequest('/Index/detail', data);
+var videoDetail = function videoDetail(data, token) {
+  return request.postRequest('/Index/detail', data, token);
 };
-var commentList = function commentList(data) {
-  return request.postRequest('/Index/comments', data);
+var commentList = function commentList(data, token) {
+  return request.postRequest('/Index/comments', data, token);
 };
-var commentSubmit = function commentSubmit(data) {
-  return request.postRequest('/Video/comment', data);
+var commentSubmit = function commentSubmit(data, token) {
+  return request.postRequest('/Video/comment', data, token);
 };
+//请求登录是获取token,不需要传token
 var thirdLogin = function thirdLogin(data) {
   return request.login('/UserAccount/thirdLogin', data);
 };
 
-var commentLike = function commentLike(data) {
-  return request.postRequest('/VideoComment/like', data);
+var commentLike = function commentLike(data, token) {
+  return request.postRequest('/VideoComment/like', data, token);
 };
-var commentCancelLike = function commentCancelLike(data) {
-  return request.postRequest('/VideoComment/cancelLike', data);
+var commentCancelLike = function commentCancelLike(data, token) {
+  return request.postRequest('/VideoComment/cancelLike', data, token);
 };
-// const videoLike =function(data){
-// 	return request.postRequest('/Video/like',data)
-// }
+var videoLike = function videoLike(data, token) {
+  return request.postRequest('/Video/like', data, token);
+};
 
 // const videoLike =function(data,token){
 // 	return request.request('/Video/like',data,'',token)
@@ -192,16 +194,15 @@ module.exports = {
   commentSubmit: commentSubmit,
   thirdLogin: thirdLogin,
   commentLike: commentLike,
-  commentCancelLike: commentCancelLike
-  // videoLike
-};
+  commentCancelLike: commentCancelLike,
+  videoLike: videoLike };
 
 /***/ }),
 
-/***/ "../../../../code/xyx_小程序/xyx_小程序/utils/request.js":
-/*!************************************************!*\
-  !*** D:/code/xyx_小程序/xyx_小程序/utils/request.js ***!
-  \************************************************/
+/***/ "../../../../code/uni-app project/lemon_app/utils/request.js":
+/*!**********************************************************!*\
+  !*** D:/code/uni-app project/lemon_app/utils/request.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -211,7 +212,7 @@ module.exports = {
 var commonUrl = "http://api-test.yixiu08.com/v1";
 
 // post请求封装
-function postRequest(url, data) {
+function postRequest(url, data, token) {
   var promise = new Promise(function (resolve, reject) {
     // var that = this;
     // var postData = data;
@@ -220,7 +221,8 @@ function postRequest(url, data) {
       data: data,
       method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded' },
+        'content-type': 'application/x-www-form-urlencoded',
+        'Authorization': token || '' },
 
       success: function success(res) {
         resolve(res);
@@ -234,7 +236,7 @@ function postRequest(url, data) {
 }
 
 // get请求封装
-function getRequest(url, data) {
+function getRequest(url, data, token) {
   var promise = new Promise(function (resolve, reject) {
     // var that = this;
     // var postData = data;
@@ -244,7 +246,8 @@ function getRequest(url, data) {
       data: data,
       method: 'GET',
       header: {
-        'content-type': 'application/json' },
+        'content-type': 'application/x-www-form-urlencoded',
+        'Authorization': token || '' },
 
       success: function success(res) {
         resolve(res);
@@ -761,7 +764,7 @@ function getData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -6857,7 +6860,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -6878,14 +6881,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -6954,7 +6957,7 @@ var patch = function(oldVnode, vnode) {
         });
         var diffData = diff(data, mpData);
         if (Object.keys(diffData).length) {
-            if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+            if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
                 console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
                     ']差量更新',
                     JSON.stringify(diffData));

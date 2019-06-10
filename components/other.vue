@@ -2,13 +2,15 @@
 	<div class="video_other">
 		<div class="video_like">
 			<image :src="videoIsLike==0?'/static/3.png':'/static/9.png'" @tap="videoLike(other)"></image>
-			<span class="like">{{other.user_like_total==undefined?0:other.user_like_total}}</span>
+			<!-- <image :src="other.user_video_like==0?'/static/3.png':'/static/9.png'" @tap="videoLike(other)"></image> -->
+			<span class="like">{{otherData.user_like_total==undefined?0:otherData.user_like_total}}</span>
 		</div>
 		<div class="video_comment" @tap="getComment(other)">
 			<image src="/static/1.png" alt=""></image>
 			<span>{{other.user_comment_total==undefined?0:other.user_comment_total}}</span>
 		</div>
-		<button open-type="share" class="video_share" @tap="selectShare(other)">
+		<!-- 这里需要使用touchstart,这个执行时机早 -->
+		<button open-type="share" class="video_share" @touchstart="selectShare(other)">
 			<image style="visibility: visible;" src="/static/2.png" alt=""></image>
 			<span style="visibility: visible;">{{other.user_share_total==undefined?0:other.user_share_total}}</span>
 		</button>
@@ -17,85 +19,70 @@
 
 <script>
 	// import eventBus from '../main.js'
+	import api from '../utils/api.js'
 	export default {
 		data() {
 			return {
-				loginMsg:'',
-				videoIsLike:false
+				loginMsg: '',
+				videoIsLike: false,
+				shareDetail: {},
+				otherData:''
 			};
 		},
 		props: ['other'],
 		mounted() {
-			
 			// console.log(this.videoIsLike,1222333)
-			let that=this;
+			let that = this;
 			uni.getStorage({
 				key: 'loginMsg',
 				success: function(res) {
-					that.loginMsg=res.data
+					that.loginMsg = res.data
+					that.otherData=that.other
+					console.log(that.otherData,55555)
 					// console.log(that.loginMsg,445566)
 				}
 			})
 		},
+		created() {
+			// console.log('组件实现功能')
+		},
+
 		methods: {
 			//点击获取当前视频的评论内容,根据视频id,用户id
-			
 			getComment(res) {
 				//跳转到评论页
 				uni.navigateTo({
-					url: `../commentList/commentList?video_id=${res.video_id}&user_id=${res.video_id}`
+					url: `../commentList/commentList?video_id=${res.video_id}&user_id=${res.user_id}`
 				});
 			},
 			videoLike(res) {
-			
-				console.log(res, 6666)
-				// api.videoLike({
-				// 	video_id: res.video_id,
-				// 	op: !this.videoIsLike,
-				// }, ).then(res => {
-				// 	console.log(res, 7777)
-				// })
+				// console.log(res)
+				console.log(this.other,'没改变之前')
+				//这里需要增加一个videoIsLike,因为不需要点赞就刷新页面
+				// op不能是true/false.只能是1 /0
 				let that = this;
-				uni.request({
-					url: 'http://api-test.yixiu08.com/v1/Video/like',
-					data: {
-						video_id: res.video_id,
-						op: !that.videoIsLike
-					},
-					method: 'POST',
-					header: {
-						'authorization': that.loginMsg.access_token
-					},
-					success: function(res) {
-						//将图片换成红色的
-						that.videoIsLike = !that.videoIsLike
-						console.log(that.videoIsLike)
-						// // console.log(res)
-						// // console.log(that.loginMsg,'000000')
-						// uni.setStorage({
-						// 	key: 'videoIsLike',
-						// 	data: that.videoIsLike
-						// })
-					}
+				that.videoIsLike = (!that.videoIsLike==true? 1: 0 )  //true false     1  0
+				api.videoLike({
+					video_id: res.video_id,
+					op: that.videoIsLike,
+				}, that.loginMsg.access_token).then(res => {
+					console.log(res)
+					that.other=that.other
+					that.otherData.user_like_total++
+					//如何在组件中实现不用刷新页面，也能刷新数据？
+					//组件的数据通过props接受，把props的数据放在data中，页面的数据绑定data中的数据，
+					//点赞后改变data中的数据，就可以实现动态地改变数据
 				})
 			},
-			selectShare(res) {
-				console.log(res, 444444)
-				this.shareDetail = res
-			},
-			onShareAppMessage: function(res) {
-				console.log(res, 555555)
-				// var that = this
-				if (res.from === 'button') {}
-				return {
-					title: this.shareDetail.title,
-					imageUrl: this.shareDetail.cover_img,
-					// path: '/pages/index/videoDetail',
-					success: function(res) {
-						console.log('成功', res)
-					}
-				}
 
+
+
+			//在组件里面没有办法触发onShareAppMessage
+			selectShare(res) {
+				// console.log(res, 444444)
+				this.$emit('shareMsg', {
+					data: res
+				})
 			},
 		}
 	}

@@ -24,17 +24,17 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.videoList .videoItem.data-v-4d7a87ee {
+.videoList .videoItem.data-v-3698c6ea {
   border-bottom: 2px solid #ccc;
 }
-.videoList .videoItem .user.data-v-4d7a87ee {
+.videoList .videoItem .user.data-v-3698c6ea {
     padding: 10px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
 }
-.videoList .videoItem .user .left.data-v-4d7a87ee {
+.videoList .videoItem .user .left.data-v-3698c6ea {
       -webkit-box-flex: 1;
       -webkit-flex: 1;
           -ms-flex: 1;
@@ -55,15 +55,15 @@
           -ms-flex-align: center;
               align-items: center;
 }
-.videoList .videoItem .user .left .user_header.data-v-4d7a87ee {
+.videoList .videoItem .user .left .user_header.data-v-3698c6ea {
         width: 20px;
         height: 20px;
         border-radius: 50%;
 }
-.videoList .videoItem .user .left .user_name.data-v-4d7a87ee {
+.videoList .videoItem .user .left .user_name.data-v-3698c6ea {
         margin-left: 10px;
 }
-.videoList .videoItem .user .right.data-v-4d7a87ee {
+.videoList .videoItem .user .right.data-v-3698c6ea {
       -webkit-box-pack: center;
       -webkit-justify-content: center;
           -ms-flex-pack: center;
@@ -71,23 +71,23 @@
       font-size: 12px;
       color: #333;
 }
-.videoList .videoItem .video_detail.data-v-4d7a87ee {
+.videoList .videoItem .video_detail.data-v-3698c6ea {
     position: relative;
 }
-.videoList .videoItem .video_detail .video_title.data-v-4d7a87ee {
+.videoList .videoItem .video_detail .video_title.data-v-3698c6ea {
       padding: 10px;
 }
-.videoList .videoItem .video_detail video.data-v-4d7a87ee {
+.videoList .videoItem .video_detail video.data-v-3698c6ea {
       width: 100%;
 }
-.videoList .videoItem .video_detail .cover_img.data-v-4d7a87ee {
+.videoList .videoItem .video_detail .cover_img.data-v-3698c6ea {
       position: absolute;
       left: 0;
       bottom: 4px;
       width: 100%;
       height: 225px;
 }
-.videoList .videoItem .video_detail .play.data-v-4d7a87ee {
+.videoList .videoItem .video_detail .play.data-v-3698c6ea {
       width: 40px;
       height: 40px;
       position: absolute;

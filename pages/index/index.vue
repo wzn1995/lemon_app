@@ -1,5 +1,6 @@
 <template>
 	<div class="videoList">
+		<!-- <button open-type="share" style="visibility: visible;">分享</button> -->
 		<div class="videoItem" v-for="(item,index) in videoList" :key="index">
 			<div class="user">
 				<div class="left">
@@ -9,8 +10,8 @@
 				<div class="right" @tap="del(index)">X</div>
 			</div>
 			<myvideo :details="item"></myvideo>
-			<other :other="item"></other>
-		
+			<other :other="item" @shareMsg='getShareDate'></other>
+
 		</div>
 
 	</div>
@@ -36,7 +37,8 @@
 				// commentList: {},
 				// videoIsLike: 0,
 				shareDetail: {},
-				loginMsg:''
+				loginMsg: '',
+				// shareInfo: {}
 				// 'token':
 			}
 		},
@@ -44,17 +46,41 @@
 			myvideo,
 			other,
 		},
+		onShareAppMessage(res) {
+			// console.log(this.shareDetail,'分享')
+			// console.log(this)
+			if (res.from === 'button') { // 来自页面内分享按钮
+				// console.log(res.target)
+			}
+			return {
+			
+				title: this.shareDetail.title,
+				imageUrl: this.shareDetail.cover_img,
+				path: `/pages/commentList/commentList?video_id=${this.shareDetail.video_id}&user_id=${this.shareDetail.user_id}`,
+				success: function(res) {
+					console.log('成功', res)
+				},
+				fail: function(res) {
+					console.log(res,'失败')
+				}
+			}
+		},
 		created() {
-			//第三方登录获取token以及user_id等
+			//第三方登录获取token以及user_id等,并把数据放进data中
+			let that = this
 			uni.login({
 				provider: 'weixin',
 				scopes: 'auth_base',
 				success(res) {
-					console.log(res.code, 333333)
+					// console.log(res.code, 333333)
 					api.thirdLogin({
 						type: 4,
 						code: res.code
 					}).then(res => {
+						// console.log(res,1122321312)
+						that.loginMsg = res.data
+						// console.log(that.loginMsg,1111)
+
 						//将获取到的登录信息放进storage
 						uni.setStorage({
 							key: 'loginMsg',
@@ -63,35 +89,22 @@
 								console.log('获取登录验证成功')
 							}
 						})
+						// console.log(that.loginMsg.data.access_token,2222)
+						return api.videoList({}, that.loginMsg.data.access_token)
+
+					}).then(res => {
+						that.videoList = res.data.data.video_list
+						console.log(that.videoList, 444444)
 					})
 				}
 			})
 		},
 
-		mounted() {
-			
-			//获取到storage的数据，放进data中
-			let that=this;
-			uni.getStorage({
-				key: 'loginMsg',
-				success: function(res) {
-					that.loginMsg=res.data
-					console.log(that.loginMsg,445566)
-				}
-			})
-
-			//请求视频列表
-			//第一次请求不发送last_id
-			api.videoList().then((res) => {	
-				this.videoList = res.data.data.video_list
-				console.log(this.videoList, 444444)
-			})
-		},
 		//下拉刷新
 		onPullDownRefresh: function() {
 			this.videoList = {};
 			// console.log(this.videoList)
-			api.videoList().then((res) => {
+			api.videoList({}, this.loginMsg.data.access_token).then((res) => {
 				// console.log(res, 999999)
 				this.videoList = res.data.data.video_list
 			})
@@ -103,8 +116,8 @@
 		onReachBottom() {
 			console.log('触底了')
 			// console.log(this.videoList)
-			let index=this.videoList.length-1
-			let last_id=this.videoList[index].video_id
+			let index = this.videoList.length - 1
+			let last_id = this.videoList[index].video_id
 			// console.log(last_id)
 			this.getMoreVideo(last_id);
 		},
@@ -122,15 +135,19 @@
 				console.log(index)
 				this.videoList.splice(index, 1)
 			},
-		
+
 			getMoreVideo(last_id) {
 				api.videoList({
 					last_id
-				}).then((res) => {
+				}, this.loginMsg.data.access_token).then((res) => {
 					res.data.data.video_list.map(item => {
 						this.videoList.push(item)
 					})
 				})
+			},
+			//接受子组件传过来的值
+			getShareDate(res) {
+				this.shareDetail = res.data
 			},
 
 		}
@@ -138,7 +155,6 @@
 </script>
 
 <style scoped lang="scss">
-
 	.videoList {
 		.videoItem {
 			border-bottom: 2px solid #ccc;

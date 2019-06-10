@@ -3,7 +3,7 @@
 const commonUrl = "http://api-test.yixiu08.com/v1"
 
 // post请求封装
-function postRequest(url, data) {
+function postRequest(url, data,token) {
 	var promise = new Promise((resolve, reject) => {
 		// var that = this;
 		// var postData = data;
@@ -12,10 +12,11 @@ function postRequest(url, data) {
 			data: data,
 			method: 'POST',
 			header: {
-				'content-type': 'application/x-www-form-urlencoded'
+				'content-type': 'application/x-www-form-urlencoded',
+				'Authorization':token||''
 			},
 			success: function(res) {
-		  	resolve(res)
+				resolve(res)
 			},
 			error: function(e) {
 				reject('网络出错');
@@ -26,7 +27,7 @@ function postRequest(url, data) {
 }
 
 // get请求封装
-function getRequest(url, data) {
+function getRequest(url, data,token) {
 	var promise = new Promise((resolve, reject) => {
 		// var that = this;
 		// var postData = data;
@@ -36,7 +37,8 @@ function getRequest(url, data) {
 			data: data,
 			method: 'GET',
 			header: {
-				'content-type': 'application/json'
+				'content-type': 'application/x-www-form-urlencoded',
+				'Authorization':token||''
 			},
 			success: function(res) {
 					resolve(res);

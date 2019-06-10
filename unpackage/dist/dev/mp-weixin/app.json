@@ -41,6 +41,5 @@
     ],
     "position": "bottom"
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

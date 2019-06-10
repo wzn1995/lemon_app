@@ -2,7 +2,7 @@
   "navigationBarTitleText": "首页",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "test": "/components/test",
-    "myvideo": "/components/myvideo"
+    "myvideo": "/components/myvideo",
+    "other": "/components/other"
   }
 }

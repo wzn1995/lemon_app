@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page.data-v-933d0e8c {
+page.data-v-4ef96f1e {
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -44,7 +44,7 @@ page.data-v-933d0e8c {
           justify-content: center;
   background: #f9f9f9;
 }
-.body-view.data-v-933d0e8c {
+.body-view.data-v-4ef96f1e {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -70,7 +70,7 @@ page.data-v-933d0e8c {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.body-view .tab_menu.data-v-933d0e8c {
+.body-view .tab_menu.data-v-4ef96f1e {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -81,12 +81,12 @@ page.data-v-933d0e8c {
     background-color: #FFFFFF;
     /* 在这里设置导航条高度 */
 }
-.body-view .tab_menu .tab-view.data-v-933d0e8c {
+.body-view .tab_menu .tab-view.data-v-4ef96f1e {
       display: inline-block;
       white-space: nowrap;
       height: 100%;
 }
-.body-view .tab_menu .tab-view .tab.data-v-933d0e8c {
+.body-view .tab_menu .tab-view .tab.data-v-4ef96f1e {
         margin-left: 25rpx;
         margin-right: 25rpx;
         position: relative;
@@ -104,23 +104,23 @@ page.data-v-933d0e8c {
             -ms-flex-pack: center;
                 justify-content: center;
 }
-.body-view .tab_menu .tab-view .tab .tab-txt.data-v-933d0e8c {
+.body-view .tab_menu .tab-view .tab .tab-txt.data-v-4ef96f1e {
           height: 40rpx;
           font-size: 28rpx;
           font-weight: 400;
           color: #9a9a9a;
           line-height: 40rpx;
 }
-.body-view .tab_menu .tab-view .tab .tab-bottom.data-v-933d0e8c {
+.body-view .tab_menu .tab-view .tab .tab-bottom.data-v-4ef96f1e {
           position: absolute;
           bottom: 0;
           width: 100%;
 }
-.body-view .tab_menu .tab-view .tab .tab-bottom .tab-bottom-color.data-v-933d0e8c {
+.body-view .tab_menu .tab-view .tab .tab-bottom .tab-bottom-color.data-v-4ef96f1e {
             width: 60%;
             height: 4rpx;
 }
-.body-view .tab_menu .tab-view .tab-act.data-v-933d0e8c {
+.body-view .tab_menu .tab-view .tab-act.data-v-4ef96f1e {
         /* 在这里写 单个按钮样式 */
         margin-left: 25rpx;
         margin-right: 25rpx;
@@ -139,14 +139,14 @@ page.data-v-933d0e8c {
             -ms-flex-pack: center;
                 justify-content: center;
 }
-.body-view .tab_menu .tab-view .tab-act .tab-txt.data-v-933d0e8c {
+.body-view .tab_menu .tab-view .tab-act .tab-txt.data-v-4ef96f1e {
           height: 40rpx;
           font-size: 28rpx;
           font-weight: 400;
           color: #00aaff;
           line-height: 40rpx;
 }
-.body-view .tab_menu .tab-view .tab-act .tab-bottom.data-v-933d0e8c {
+.body-view .tab_menu .tab-view .tab-act .tab-bottom.data-v-4ef96f1e {
           position: absolute;
           bottom: 0;
           width: 100%;
@@ -159,12 +159,12 @@ page.data-v-933d0e8c {
               -ms-flex-pack: center;
                   justify-content: center;
 }
-.body-view .tab_menu .tab-view .tab-act .tab-bottom .tab-bottom-color.data-v-933d0e8c {
+.body-view .tab_menu .tab-view .tab-act .tab-bottom .tab-bottom-color.data-v-4ef96f1e {
             width: 60%;
             height: 4rpx;
             background: #00aaff;
 }
-.body-view .swiper-box-list.data-v-933d0e8c {
+.body-view .swiper-box-list.data-v-4ef96f1e {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
         -ms-flex: 1;
@@ -173,11 +173,11 @@ page.data-v-933d0e8c {
     height: auto;
     background-color: #FFFFFF;
 }
-.body-view .swiper-box-list .swiper-one-list.data-v-933d0e8c {
+.body-view .swiper-box-list .swiper-one-list.data-v-4ef96f1e {
       height: 100%;
       width: 100%;
 }
-.body-view .swiper-box-list .swiper-one-list .swiper-list-entity.data-v-933d0e8c {
+.body-view .swiper-box-list .swiper-one-list .swiper-list-entity.data-v-4ef96f1e {
         width: 100%;
         height: 112rpx;
         display: -webkit-box;
