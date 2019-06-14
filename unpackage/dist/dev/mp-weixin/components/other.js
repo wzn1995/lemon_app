@@ -140,9 +140,9 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../utils/api.js */ "..
 //
 // import eventBus from '../main.js'
 var _default = { data: function data() {return { loginMsg: '', videoIsLike: false, shareDetail: {}, otherData: '' };}, props: ['other'], mounted: function mounted() {// console.log(this.videoIsLike,1222333)
-    var that = this;uni.getStorage({ key: 'loginMsg', success: function success(res) {that.loginMsg = res.data;that.otherData = that.other;console.log(that.otherData, 55555); // console.log(that.loginMsg,445566)
-      } });
-  },
+    var that = this;uni.getStorage({ key: 'loginMsg', success: function success(res) {that.loginMsg = res.data;that.otherData = that.other; // console.log(that.otherData,55555)
+        // console.log(that.loginMsg,445566)
+      } });},
   created: function created() {
     // console.log('组件实现功能')
   },
@@ -168,7 +168,7 @@ var _default = { data: function data() {return { loginMsg: '', videoIsLike: fals
       that.loginMsg.access_token).then(function (res) {
         console.log(res);
         that.other = that.other;
-        that.otherData.user_like_total++;
+        that.videoIsLike == 1 ? that.otherData.user_like_total++ : that.otherData.user_like_total--;
         //如何在组件中实现不用刷新页面，也能刷新数据？
         //组件的数据通过props接受，把props的数据放在data中，页面的数据绑定data中的数据，
         //点赞后改变data中的数据，就可以实现动态地改变数据

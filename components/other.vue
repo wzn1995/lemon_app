@@ -38,7 +38,7 @@
 				success: function(res) {
 					that.loginMsg = res.data
 					that.otherData=that.other
-					console.log(that.otherData,55555)
+					// console.log(that.otherData,55555)
 					// console.log(that.loginMsg,445566)
 				}
 			})
@@ -68,7 +68,7 @@
 				}, that.loginMsg.access_token).then(res => {
 					console.log(res)
 					that.other=that.other
-					that.otherData.user_like_total++
+					that.videoIsLike==1?that.otherData.user_like_total++:that.otherData.user_like_total--
 					//如何在组件中实现不用刷新页面，也能刷新数据？
 					//组件的数据通过props接受，把props的数据放在data中，页面的数据绑定data中的数据，
 					//点赞后改变data中的数据，就可以实现动态地改变数据
@@ -108,7 +108,8 @@
 			}
 
 			span {
-				font-size: 14px;
+				font-size: 10px;
+				font-weight: bold;
 			}
 		}
 	}

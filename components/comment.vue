@@ -3,21 +3,21 @@
 		<div class="commentList">
 			<!-- commentList -->
 			<!-- commentList.full_parent_id_detail.parent_comment_list -->
-			<div class="commentItem" v-for="(item,index) in commentList" :key="index">
+			<div class="commentItem" v-for="(item,index) in newCommentList" :key="index">
 				<!--一级评论区 comment_top -->
 				<!-- <comtop :loginMsg="loginMsg" :comment="item" :videoDetail="videoDetail"></comtop> -->
 				<div class="top">
-					<image class="user_head" :src="item.head_img" alt="" @tap="getUserInfo(item.user_id)"></image>
+					<image class="user_head" :src="item.head_img" alt=""></image>
 					<div class="info">
 						<div class="user_name">{{item.nickname}}</div>
-						<div class="creat_time">{{item.create_time}}</div>
+						<div class="creat_time">{{item.create_time==null?'刚刚':item.create_time}}</div>
 					</div>
 					<div class="user_like">
 						<image :src="item.user_comment_like==0?'/static/3.png':'/static/9.png'" alt="" @tap="commentLike(item)"></image>
 						<span>{{item.like_total}}</span>
 					</div>
 				</div>
-				<!-- 一级评论在外面，二级评论是评论一级评论的 -->
+				<!-- 一级评论在外面 -->
 
 				<div class="comment_parent" v-for="(subItem,subIndex) in item.full_parent_id_detail.parent_comment_list" :key="subIndex">
 					<!-- 二级评论区 comment_parent -->
@@ -52,7 +52,10 @@
 				nickname: '',
 				placeholder: '',
 				user_id: '' ,//当前视频的user_id
-				comment_id:''
+				comment_id:'',
+				
+				newCommentList:'',
+				// isTapLike:false
 			};
 		},
 		components: {
@@ -60,31 +63,24 @@
 			comparent
 		},
 		props: ['commentList', 'submitDetail', 'loginMsg', 'videoDetail'],
-		//组件生命周期没有mounted
-		mounted() {
-		
+		watch:{
+			commentList(newVal,oldVal){
+				this.updata()
+			}
 		},
-
 		methods: {
-			getUserInfo(user_id) {
-				// console.log(user_id)
-				uni.navigateTo({
-					url: `../userInfo/userInfo?user_id=${user_id}`
-				});
+			updata(){
+				this.newCommentList=this.commentList
+				console.log(this.videoDetail,'拿视频的详情')
+				console.log(this.newCommentList,'有没有拿到？？')
 			},
 			commentLike(res) {
 				//评论点赞
-				console.log(res, 8888)
-				// this.like = !this.like
-				// console.log(this.like, 777)
-				// user_comment_like
 				if (!res.user_comment_like) {
 					api.commentLike({
 						comment_id: res.comment_id,
 						op: 1
 					}, this.loginMsg.access_token).then(res => {
-						//点赞
-						// this.comment.like_total++
 						console.log(res, '评论点赞')
 					})
 				} else {
@@ -92,14 +88,10 @@
 						comment_id: res.comment_id
 					}, this.loginMsg.access_token).then(res => {
 						console.log(res, '评论取消点赞')
-						// this.comment.like_total--
-						//取消点赞
 					})
 				}
-				//点赞完刷新这个页面
-				uni.redirectTo({
-					url: `../commentList/commentList?video_id=${this.videoDetail.video_id}&user_id=${this.videoDetail.user_id}`
-				})
+				this.getNewCommentList()  //重新获取评论数据
+			
 			},
 
 			input(e) {
@@ -120,25 +112,21 @@
 						parent_id: this.comment_id,
 						video_comment: this.submitDetail.video_comment
 					}, this.loginMsg.access_token).then(res => {
-						//评论成功之后，直接就刷新页面，不需要再请求了，因为commentList页面有请求
-						// console.log(res, 7777777)
-						uni.redirectTo({
-							url: `../commentList/commentList?video_id=${this.videoDetail.video_id}&user_id=${this.videoDetail.user_id}`
-						})
-						//重新加载当前这个页面，看看回复信息有没有上去
-						// api.commentList({
-						// 	video_id: this.videoDetail.video_id,
-						// 	user_id: this.videoDetail.user_id
-						// },this.loginMsg.access_token)
+						this.getNewCommentList()  //重新获取评论数据
 					})
-					// .then(res=>{
-					// 	console.log(res,888888)
-					// 	uni.redirectTo({
-					// 		url: `../commentList/commentList?video_id=${this.videoDetail.video_id}&user_id=${this.videoDetail.user_id}`
-					// 	})
-					// })
+
 				}
 
+			},
+			//点赞或者提交评论后重新获取数据
+			getNewCommentList(){
+				api.commentList({
+					video_id:this.videoDetail.video_id,
+					user_id:this.videoDetail.user_id
+				},this.loginMsg.access_token).then(res=>{
+					console.log(res,'新的评论数据')
+					this.newCommentList=res.data.data.comment_list
+				})	
 			},
 			changeSubmit(res) {
 				console.log(res,'什么')
@@ -188,15 +176,17 @@
 					flex: 5;
 					display: flex;
 					flex-direction: column;
-					justify-content: center;
+					justify-content: space-between;
 
 					.user_name {
 						// margin-bottom: 10px;
-						font-size: 12px;
+						font-size: 10px;
+						color: #ccc;
 					}
 
 					.creat_time {
-						font-size: 12px;
+						font-size: 10px;
+						color: #ccc;
 					}
 				}
 
@@ -206,10 +196,12 @@
 					image {
 						width: 20px;
 						height: 20px;
+						margin-right: 3px;
 					}
 
 					span {
 						font-size: 12px;
+						color: #ccc;
 					}
 				}
 			}
@@ -217,7 +209,8 @@
 			.comment_parent {
 				// margin-left: 40px;
 				margin: 10px 0 10px 40px;
-				background: #ccc;
+				padding: 5px 5px;
+				background: #f8f8f8;
 
 				.comment_parent_content {
 					margin-left: 25px;
@@ -244,19 +237,20 @@
 	}
 
 	.submitComment {
-		background: #f5f5f5;
+		background: #fff;
 		padding: 10px;
 		display: flex;
 		position: fixed;
 		bottom: 0;
 		left: 0;
 		right: 0;
+		border-top: 2px solid #f8f8f8;
 
 		.text {
 			flex: 5;
 			align-items: center;
 			background: #ccc;
-			border-radius: 5px;
+			border-radius: 10px;
 			margin-right: 20px;
 			box-sizing: border-box;
 
@@ -265,7 +259,7 @@
 			input {
 				margin-left: 10px;
 				font-size: 12px;
-				color: #333;
+				color: #f8f8f8;
 				height: 30px;
 				line-height: 30px;
 			}
@@ -273,7 +267,7 @@
 
 		.btn {
 			flex: 1;
-			background: #333;
+			background: #979797;
 			text-align: center;
 			box-sizing: border-box;
 			border-radius: 5px;
@@ -284,7 +278,7 @@
 			// margin: auto;
 			span {
 				font-size: 14px;
-				color: #ccc;
+				color: #fff;
 
 			}
 		}

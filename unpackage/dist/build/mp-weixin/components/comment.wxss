@@ -144,16 +144,18 @@
         -webkit-flex-direction: column;
             -ms-flex-direction: column;
                 flex-direction: column;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-            -ms-flex-pack: center;
-                justify-content: center;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
 }
 .commentList .commentItem .top .info .user_name {
-          font-size: 12px;
+          font-size: 10px;
+          color: #ccc;
 }
 .commentList .commentItem .top .info .creat_time {
-          font-size: 12px;
+          font-size: 10px;
+          color: #ccc;
 }
 .commentList .commentItem .top .user_like {
         display: -webkit-box;
@@ -164,13 +166,16 @@
 .commentList .commentItem .top .user_like image {
           width: 20px;
           height: 20px;
+          margin-right: 3px;
 }
 .commentList .commentItem .top .user_like ._span {
           font-size: 12px;
+          color: #ccc;
 }
 .commentList .commentItem .comment_parent {
       margin: 10px 0 10px 40px;
-      background: #ccc;
+      padding: 5px 5px;
+      background: #f8f8f8;
 }
 .commentList .commentItem .comment_parent .comment_parent_content {
         margin-left: 25px;
@@ -189,7 +194,7 @@
     margin-bottom: 50px;
 }
 .submitComment {
-  background: #f5f5f5;
+  background: #fff;
   padding: 10px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -199,6 +204,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  border-top: 2px solid #f8f8f8;
 }
 .submitComment .text {
     -webkit-box-flex: 5;
@@ -210,7 +216,7 @@
         -ms-flex-align: center;
             align-items: center;
     background: #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-right: 20px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -218,7 +224,7 @@
 .submitComment .text input {
       margin-left: 10px;
       font-size: 12px;
-      color: #333;
+      color: #f8f8f8;
       height: 30px;
       line-height: 30px;
 }
@@ -227,7 +233,7 @@
     -webkit-flex: 1;
         -ms-flex: 1;
             flex: 1;
-    background: #333;
+    background: #979797;
     text-align: center;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -237,6 +243,6 @@
 }
 .submitComment .btn ._span {
       font-size: 14px;
-      color: #ccc;
+      color: #fff;
 }
 

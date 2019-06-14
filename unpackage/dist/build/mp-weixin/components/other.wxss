@@ -61,7 +61,8 @@
 .video_other .video_like ._span,
     .video_other .video_comment ._span,
     .video_other .video_share ._span {
-      font-size: 14px;
+      font-size: 10px;
+      font-weight: bold;
 }
 button {
   visibility: hidden;

@@ -134,16 +134,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
 var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ "../../../../code/uni-app project/lemon_app/utils/api.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -179,18 +169,7 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ 
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { loginMsg: '', userInfo: '' };}, onShow: function onShow() {}, onLoad: function onLoad() {var that = this;uni.getStorage({ key: 'loginMsg', success: function success(res) {that.loginMsg = res.data;console.log(that.loginMsg, 4444);_api.default.userDetail({ user_id: that.loginMsg.user.user_id }).then(function (res) {// console.log(res, 22222)
-          that.userInfo = res.data.data; // console.log(that.userInfo)
+var _default = { data: function data() {return { loginMsg: '', userInfo: '' };}, onShow: function onShow() {}, onLoad: function onLoad() {var that = this;uni.getStorage({ key: 'loginMsg', success: function success(res) {that.loginMsg = res.data;console.log(that.loginMsg, 4444);_api.default.userDetail({ user_id: that.loginMsg.user.user_id }).then(function (res) {console.log(res, 22222);that.userInfo = res.data.data; // console.log(that.userInfo)
         });} });}, methods: {} };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 

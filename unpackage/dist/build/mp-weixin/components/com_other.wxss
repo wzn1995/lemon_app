@@ -30,6 +30,7 @@
   display: -ms-flexbox;
   display: flex;
   padding: 10px;
+  width: 50%;
 }
 .video_other .video_like,
   .video_other .video_comment,
@@ -46,10 +47,10 @@
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
 }
 .video_other .video_like image,
     .video_other .video_comment image,
@@ -61,10 +62,12 @@
 .video_other .video_like ._span,
     .video_other .video_comment ._span,
     .video_other .video_share ._span {
-      font-size: 14px;
+      font-size: 10px;
+      color: #ccc;
 }
 button {
   visibility: hidden;
+  padding: 0;
 }
 button::after {
   border: none;

@@ -188,7 +188,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -275,20 +275,12 @@ var _comment_top = _interopRequireDefault(__webpack_require__(/*! ./comment_top.
 var comparent = function comparent() {return __webpack_require__.e(/*! import() | components/comment_parent */ "components/comment_parent").then(__webpack_require__.bind(null, /*! ./comment_parent.vue */ "../../../../code/uni-app project/lemon_app/components/comment_parent.vue"));};var _default = { data: function data() {return { inputVal: '', // submitDetail:{},
       // commentIsLike:false,
       nickname: '', placeholder: '', user_id: '', //当前视频的user_id
-      comment_id: '' };}, components: { // comtop,
-    comparent: comparent }, props: ['commentList', 'submitDetail', 'loginMsg', 'videoDetail'], //组件生命周期没有mounted
-  mounted: function mounted() {}, methods: { getUserInfo: function getUserInfo(user_id) {// console.log(user_id)
-      uni.navigateTo({ url: "../userInfo/userInfo?user_id=".concat(user_id) });}, commentLike: function commentLike(res) {//评论点赞
-      console.log(res, 8888); // this.like = !this.like
-      // console.log(this.like, 777)
-      // user_comment_like
-      if (!res.user_comment_like) {_api.default.commentLike({ comment_id: res.comment_id, op: 1 }, this.loginMsg.access_token).then(function (res) {//点赞
-          // this.comment.like_total++
-          console.log(res, '评论点赞');});} else {_api.default.commentCancelLike({ comment_id: res.comment_id }, this.loginMsg.access_token).then(function (res) {console.log(res, '评论取消点赞'); // this.comment.like_total--
-          //取消点赞
-        });} //点赞完刷新这个页面
-      uni.redirectTo({
-        url: "../commentList/commentList?video_id=".concat(this.videoDetail.video_id, "&user_id=").concat(this.videoDetail.user_id) });
+      comment_id: '', newCommentList: '' // isTapLike:false
+    };}, components: { // comtop,
+    comparent: comparent }, props: ['commentList', 'submitDetail', 'loginMsg', 'videoDetail'], watch: { commentList: function commentList(newVal, oldVal) {this.updata();} }, methods: { updata: function updata() {this.newCommentList = this.commentList;console.log(this.videoDetail, '拿视频的详情');console.log(this.newCommentList, '有没有拿到？？');}, commentLike: function commentLike(res) {//评论点赞
+      if (!res.user_comment_like) {_api.default.commentLike({ comment_id: res.comment_id, op: 1 }, this.loginMsg.access_token).then(function (res) {console.log(res, '评论点赞');});} else {_api.default.commentCancelLike({ comment_id: res.comment_id }, this.loginMsg.access_token).then(function (res) {console.log(res, '评论取消点赞');});
+      }
+      this.getNewCommentList(); //重新获取评论数据
 
     },
 
@@ -310,25 +302,21 @@ var comparent = function comparent() {return __webpack_require__.e(/*! import() 
           parent_id: this.comment_id,
           video_comment: this.submitDetail.video_comment },
         this.loginMsg.access_token).then(function (res) {
-          //评论成功之后，直接就刷新页面，不需要再请求了，因为commentList页面有请求
-          // console.log(res, 7777777)
-          uni.redirectTo({
-            url: "../commentList/commentList?video_id=".concat(_this.videoDetail.video_id, "&user_id=").concat(_this.videoDetail.user_id) });
-
-          //重新加载当前这个页面，看看回复信息有没有上去
-          // api.commentList({
-          // 	video_id: this.videoDetail.video_id,
-          // 	user_id: this.videoDetail.user_id
-          // },this.loginMsg.access_token)
+          _this.getNewCommentList(); //重新获取评论数据
         });
-        // .then(res=>{
-        // 	console.log(res,888888)
-        // 	uni.redirectTo({
-        // 		url: `../commentList/commentList?video_id=${this.videoDetail.video_id}&user_id=${this.videoDetail.user_id}`
-        // 	})
-        // })
+
       }
 
+    },
+    //点赞或者提交评论后重新获取数据
+    getNewCommentList: function getNewCommentList() {var _this2 = this;
+      _api.default.commentList({
+        video_id: this.videoDetail.video_id,
+        user_id: this.videoDetail.user_id },
+      this.loginMsg.access_token).then(function (res) {
+        console.log(res, '新的评论数据');
+        _this2.newCommentList = res.data.data.comment_list;
+      });
     },
     changeSubmit: function changeSubmit(res) {
       console.log(res, '什么');
@@ -347,7 +335,6 @@ var comparent = function comparent() {return __webpack_require__.e(/*! import() 
       this.inputVal = '假装有值';
       // console.log(this.placeholder,666666)
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 

@@ -118,7 +118,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ "../../../../code/uni-app project/lemon_app/utils/api.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
 //
 //
 //
@@ -152,10 +158,7 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
     // console.log(this)
     if (res.from === 'button') {// 来自页面内分享按钮
       // console.log(res.target)
-    }return {
-
-      title: this.shareDetail.title,
-      imageUrl: this.shareDetail.cover_img,
+    }return { title: this.shareDetail.title, imageUrl: this.shareDetail.cover_img,
       path: "/pages/commentList/commentList?video_id=".concat(this.shareDetail.video_id, "&user_id=").concat(this.shareDetail.user_id),
       success: function success(res) {
         console.log('成功', res);
@@ -223,13 +226,6 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
   },
 
   methods: {
-    //点击用户头像的时候，显示用户的详情，根据user_id获取用户资料
-    getUserInfo: function getUserInfo(user_Id) {
-      // console.log(userId, 66666)
-      uni.navigateTo({
-        url: "../userInfo/userInfo?user_id=".concat(user_Id) });
-
-    },
     //点击删除当前这个视频
     del: function del(index) {
       console.log(index);

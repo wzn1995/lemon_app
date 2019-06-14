@@ -12,26 +12,12 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
-		}
-	    ,{
-            "path" : "pages/test/test",
-            "style" : {
-				"navigationBarTitleText": "测试"
-			}
-        },
+		},
 		{
 			"path":"pages/commentList/commentList",
 			"style":{
 				"navigationBarTitleText": "评论"
 			}
-		}
-        ,{
-            "path" : "pages/userInfo/userInfo",
-            "style" : {}
-        },
-		{
-			"path" : "pages/login/login",
-			"style": {}
 		}
     ],
 	"globalStyle": {
@@ -57,13 +43,7 @@
 			"pagePath": "pages/my/my",
 			"iconPath": "static/icon_me@3x.png",
 			"selectedIconPath": "static/icon_me_active@3x.png"
-		  },{
-			"text": "测试",
-			"pagePath": "pages/test/test",
-			"iconPath": "static/icon_me@3x.png",
-			"selectedIconPath": "static/icon_me_active@3x.png"
 		  }
-		  
 		  ],
 		  
 		  "position": "bottom"	

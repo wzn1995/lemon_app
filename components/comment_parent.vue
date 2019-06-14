@@ -26,10 +26,8 @@
 
 <style lang="scss">
 	.comment_parent_top {
-
 		display: flex;
 		align-items: center;
-
 		.head_img {
 			width: 20px;
 			height: 20px;
@@ -39,11 +37,13 @@
 		.nickname {
 			margin-left: 5px;
 			margin-right: 5px;
-			font-size: 12px;
+			font-size: 10px;
+			color: #ccc
 		}
 
 		.comment_time {
-			font-size: 12px;
+			font-size: 10px;
+			color: #ccc
 		}
 	}
 

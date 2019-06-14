@@ -2,10 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/my/my",
-    "pages/test/test",
-    "pages/commentList/commentList",
-    "pages/userInfo/userInfo",
-    "pages/login/login"
+    "pages/commentList/commentList"
   ],
   "subPackages": [],
   "window": {
@@ -31,15 +28,10 @@
         "pagePath": "pages/my/my",
         "iconPath": "static/icon_me@3x.png",
         "selectedIconPath": "static/icon_me_active@3x.png"
-      },
-      {
-        "text": "测试",
-        "pagePath": "pages/test/test",
-        "iconPath": "static/icon_me@3x.png",
-        "selectedIconPath": "static/icon_me_active@3x.png"
       }
     ],
     "position": "bottom"
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

@@ -52,15 +52,15 @@
 	.video_other {
 		display: flex;
 		padding: 10px;
-
+		width: 50%;
 		.video_like,
 		.video_comment,
 		.video_share {
 			flex: 1;
 			display: flex;
 			align-items: center;
-			justify-content: center;
-
+			justify-content: flex-start;
+			
 			image {
 				width: 20px;
 				height: 20px;
@@ -68,13 +68,15 @@
 			}
 
 			span {
-				font-size: 14px;
+				font-size: 10px;
+				color: #ccc;
 			}
 		}
 	}
 
 	button {
 		visibility: hidden;
+		padding: 0;
 	}
 
 	button::after {

@@ -4,10 +4,13 @@
 		<div class="videoItem" v-for="(item,index) in videoList" :key="index">
 			<div class="user">
 				<div class="left">
-					<img class="user_header" :src="item.head_img" @tap="getUserInfo(item.user_id)" alt="">
+					<img class="user_header" :src="item.head_img" alt="">
 					<div class="user_name">{{item.nickname}}</div>
 				</div>
-				<div class="right" @tap="del(index)">X</div>
+				<div class="right" @tap="del(index)">
+					×
+					<!-- <icon type="cancel" size="14" style="color:#ccc"/> -->
+				</div>
 			</div>
 			<myvideo :details="item"></myvideo>
 			<other :other="item" @shareMsg='getShareDate'></other>
@@ -123,13 +126,6 @@
 		},
 
 		methods: {
-			//点击用户头像的时候，显示用户的详情，根据user_id获取用户资料
-			getUserInfo(user_Id) {
-				// console.log(userId, 66666)
-				uni.navigateTo({
-					url: `../userInfo/userInfo?user_id=${user_Id}`
-				});
-			},
 			//点击删除当前这个视频
 			del(index) {
 				console.log(index)
@@ -157,12 +153,12 @@
 <style scoped lang="scss">
 	.videoList {
 		.videoItem {
-			border-bottom: 2px solid #ccc;
+			border-bottom: 2px solid #f8f8f8;
 
 			.user {
 				padding: 10px;
 				display: flex;
-
+				align-items: center;
 				// justify-content: space-around;
 				.left {
 					flex: 1;
@@ -172,21 +168,25 @@
 					align-items: center;
 
 					.user_header {
-						width: 20px;
-						height: 20px;
+						width: 30px;
+						height: 30px;
 						border-radius: 50%;
 					}
 
 					.user_name {
 						margin-left: 10px;
+						font-size: 14px;
+						font-weight: bold;
 					}
 				}
 
 				.right {
 					// flex: 1;
+					display: flex;	
 					justify-content: center;
-					font-size: 12px;
-					color: #333;
+					align-items: center;
+					font-size: 14px;
+					color: #ccc;
 				}
 
 			}

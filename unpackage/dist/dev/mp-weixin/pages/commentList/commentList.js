@@ -131,7 +131,12 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ 
 //
 //
 //
-var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | components/myvideo */ "components/myvideo").then(__webpack_require__.bind(null, /*! ../../components/myvideo.vue */ "../../../../code/uni-app project/lemon_app/components/myvideo.vue"));};var comOther = function comOther() {return __webpack_require__.e(/*! import() | components/com_other */ "components/com_other").then(__webpack_require__.bind(null, /*! ../../components/com_other.vue */ "../../../../code/uni-app project/lemon_app/components/com_other.vue"));};var comment = function comment() {return __webpack_require__.e(/*! import() | components/comment */ "components/comment").then(__webpack_require__.bind(null, /*! ../../components/comment.vue */ "../../../../code/uni-app project/lemon_app/components/comment.vue"));};var _default = { data: function data() {return { videoDetail: {}, commentList: {}, submitDetail: {}, loginMsg: '', video_id: "", user_id: "", commentLength: '', flag: false };},
+var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | components/myvideo */ "components/myvideo").then(__webpack_require__.bind(null, /*! ../../components/myvideo.vue */ "../../../../code/uni-app project/lemon_app/components/myvideo.vue"));};var comOther = function comOther() {return __webpack_require__.e(/*! import() | components/com_other */ "components/com_other").then(__webpack_require__.bind(null, /*! ../../components/com_other.vue */ "../../../../code/uni-app project/lemon_app/components/com_other.vue"));};var comment = function comment() {return __webpack_require__.e(/*! import() | components/comment */ "components/comment").then(__webpack_require__.bind(null, /*! ../../components/comment.vue */ "../../../../code/uni-app project/lemon_app/components/comment.vue"));};var _default = { data: function data() {return { videoDetail: {}, commentList: {}, submitDetail: {}, loginMsg: '', video_id: "", user_id: "", commentLength: '', flag: false, show: true,
+
+      animationData: {} };
+
+
+  },
   components: {
     myvideo: myvideo,
     comOther: comOther,
@@ -154,6 +159,15 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
 
   },
   mounted: function mounted() {var _this = this;
+    // console.log('?????')
+    var that = this;
+    uni.getSystemInfo({
+      success: function success(res) {
+        that.screenHeight = res.windowHeight; //屏幕可用高度
+        that.screenWidth = res.windowWidth;
+        // console.log(that.screenHeight,that.screenWidth)
+      } });
+
     // console.log(2222222,'what')
     //先根据video_id获取到视频详情，下面再根据video_id和user_id获取评论内容
     // console.log(this.loginMsg.access_token,5555555)
@@ -180,6 +194,7 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
       // console.log(comment_detail, 3333)
       _this.commentList = comment_detail.data.data.comment_list;
       _this.commentLength = _this.commentList.length;
+
       // console.log(this.commentLength)
       console.log(_this.commentList, 2222);
       //评论数多，只会显示10条，剩下的需要上拉加载更多
@@ -190,14 +205,12 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
   onReachBottom: function onReachBottom() {var _this2 = this;
     // console.log('加载更多')
     //如果没有更多数据了，就不需要重复发请求。通过数据的长度来判断是不是有新的数据追加了
-
     if (!this.flag) {
       //如果有新的数据追加
       var index = this.commentList.length - 1;
       var last_id = this.commentList[index].comment_id;
       // console.log(last_id,333)
       _api.default.commentList({
-
         video_id: this.video_id, //当前视频id
         user_id: this.user_id, //视频的用户id
         last_id: last_id //评论最后一条的id ,在commentList中comment_id
@@ -216,7 +229,29 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
       });
     }
   },
-  methods: {} };exports.default = _default;
+  onShow: function onShow() {
+    var animation = uni.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease' });
+
+    this.animation = animation;
+  },
+  methods: {
+    handleCancel: function handleCancel() {
+      this.show = false;
+      // console.log(this.animation)
+      var rate = this.videoDetail.width / this.screenWidth;
+      this.height = this.screenHeight * rate;
+      // console.log(this.height,6666)
+      if (this.height > this.screenHeight) {
+        this.height = this.screenHeight;
+      }
+
+      this.animation.height(this.height).step();
+      this.animationData = this.animation.export();
+      console.log(this.animationData, 8888);
+
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),

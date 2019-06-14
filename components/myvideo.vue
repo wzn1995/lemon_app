@@ -53,6 +53,7 @@
 		// height: 225px;
 		.video_title {
 			padding: 10px;
+			font-size: 14px;
 		}
 
 		video {

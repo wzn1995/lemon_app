@@ -24,40 +24,44 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.my.data-v-4ca52f7a {
-  padding: 10px;
+.my.data-v-2b2c0d24 {
+  padding: 30px 10px;
 }
-.my .user.data-v-4ca52f7a {
+.my .user.data-v-2b2c0d24 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     -webkit-box-align: center;
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
 }
-.my .user .user_header.data-v-4ca52f7a {
-      width: 40px;
-      height: 40px;
+.my .user .user_header.data-v-2b2c0d24 {
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
 }
-.my .user .user_name.data-v-4ca52f7a {
+.my .user .user_name.data-v-2b2c0d24 {
       margin-left: 10px;
       font-size: 14px;
 }
-.my .userInfo.data-v-4ca52f7a {
-    padding: 10px 0;
+.my .userInfo.data-v-2b2c0d24 {
+    padding: 10px 45px 0 45px;
 }
-.my .userInfo .top.data-v-4ca52f7a {
+.my .userInfo .top.data-v-2b2c0d24 {
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
 }
-.my .userInfo .top .focus.data-v-4ca52f7a,
-      .my .userInfo .top .fans.data-v-4ca52f7a,
-      .my .userInfo .top .works.data-v-4ca52f7a {
+.my .userInfo .top .focus.data-v-2b2c0d24,
+      .my .userInfo .top .fans.data-v-2b2c0d24,
+      .my .userInfo .top .works.data-v-2b2c0d24 {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
             -ms-flex: 1;
@@ -76,99 +80,49 @@
             -ms-flex-direction: column;
                 flex-direction: column;
         text-align: center;
+        padding: 10px 0;
 }
-.my .userInfo .top .focus .num.data-v-4ca52f7a,
-        .my .userInfo .top .fans .num.data-v-4ca52f7a,
-        .my .userInfo .top .works .num.data-v-4ca52f7a {
+.my .userInfo .top .focus .num.data-v-2b2c0d24,
+        .my .userInfo .top .fans .num.data-v-2b2c0d24,
+        .my .userInfo .top .works .num.data-v-2b2c0d24 {
           font-size: 14px;
           font-weight: bold;
+          color: #ccc;
 }
-.my .userInfo .top .focus .text.data-v-4ca52f7a,
-        .my .userInfo .top .fans .text.data-v-4ca52f7a,
-        .my .userInfo .top .works .text.data-v-4ca52f7a {
+.my .userInfo .top .focus .text.data-v-2b2c0d24,
+        .my .userInfo .top .fans .text.data-v-2b2c0d24,
+        .my .userInfo .top .works .text.data-v-2b2c0d24 {
           font-size: 12px;
+          font-weight: bold;
+          color: #333;
 }
-.my .userInfo .mid.data-v-4ca52f7a {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-flex-wrap: wrap;
-          -ms-flex-wrap: wrap;
-              flex-wrap: wrap;
-      padding: 10px 0;
+.my .userInfo .mid.data-v-2b2c0d24 {
+      margin-top: 40px;
 }
-.my .userInfo .mid .nickname.data-v-4ca52f7a,
-      .my .userInfo .mid .sex.data-v-4ca52f7a,
-      .my .userInfo .mid .birthday.data-v-4ca52f7a,
-      .my .userInfo .mid .city.data-v-4ca52f7a {
-        width: 50%;
+.my .userInfo .mid .nickname.data-v-2b2c0d24,
+      .my .userInfo .mid .sex.data-v-2b2c0d24,
+      .my .userInfo .mid .birthday.data-v-2b2c0d24,
+      .my .userInfo .mid .city.data-v-2b2c0d24 {
         font-size: 14px;
+        margin-bottom: 20px;
+        color: #666;
 }
-.my .userInfo .mid .nickname ._span.data-v-4ca52f7a,
-        .my .userInfo .mid .sex ._span.data-v-4ca52f7a,
-        .my .userInfo .mid .birthday ._span.data-v-4ca52f7a,
-        .my .userInfo .mid .city ._span.data-v-4ca52f7a {
+.my .userInfo .mid .nickname ._span.data-v-2b2c0d24,
+        .my .userInfo .mid .sex ._span.data-v-2b2c0d24,
+        .my .userInfo .mid .birthday ._span.data-v-2b2c0d24,
+        .my .userInfo .mid .city ._span.data-v-2b2c0d24 {
           margin-left: 5px;
 }
-.my .userInfo .bottom.data-v-4ca52f7a {
+.my .userInfo .bottom.data-v-2b2c0d24 {
       padding: 10px 0;
       font-size: 14px;
 }
-.my .userInfo .bottom ._span.data-v-4ca52f7a {
-        margin-left: 5px;
+.my .userInfo .bottom .signature.data-v-2b2c0d24 {
+        padding: 20px 0;
+        color: #ccc;
+        font-size: 16px;
 }
-.my .activity .title.data-v-4ca52f7a {
-    font-size: 14px;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-.my .activity .activity_item.data-v-4ca52f7a {
-    margin-bottom: 10px;
-    background: #ccc;
-    padding: 10px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-.my .activity .activity_item ._img.data-v-4ca52f7a {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-}
-.my .activity .activity_item .activity_info.data-v-4ca52f7a {
-      margin-left: 10px;
-      -webkit-box-flex: 5;
-      -webkit-flex: 5;
-          -ms-flex: 5;
-              flex: 5;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-          -ms-flex-direction: column;
-              flex-direction: column;
-}
-.my .activity .activity_item .activity_info .activity_item_title.data-v-4ca52f7a {
+.my .userInfo .bottom .content.data-v-2b2c0d24 {
         font-size: 14px;
-}
-.my .activity .activity_item .activity_info .activity_item_text.data-v-4ca52f7a {
-        font-size: 12px;
-}
-.my .activity .activity_item .icon.data-v-4ca52f7a {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-          -ms-flex: 1;
-              flex: 1;
-      font-size: 16px;
-      color: #333;
 }
 
