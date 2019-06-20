@@ -12,7 +12,7 @@ function postRequest(url, data,token) {
 			data: data,
 			method: 'POST',
 			header: {
-				'content-type': 'application/x-www-form-urlencoded',
+				'Content-Type': 'application/x-www-form-urlencoded',
 				'Authorization':token||''
 			},
 			success: function(res) {
@@ -58,7 +58,7 @@ function login(url, data) {
 			data: data,
 			method: 'POST',
 			header: {
-				'content-type': 'application/x-www-form-urlencoded',
+				'Content-Type': 'application/x-www-form-urlencoded',
 				'From': 'APPLET_H5'
 			},
 			success: function(res) {

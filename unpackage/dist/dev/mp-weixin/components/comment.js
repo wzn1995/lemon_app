@@ -188,7 +188,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -274,26 +274,37 @@ var _comment_top = _interopRequireDefault(__webpack_require__(/*! ./comment_top.
 //
 var comparent = function comparent() {return __webpack_require__.e(/*! import() | components/comment_parent */ "components/comment_parent").then(__webpack_require__.bind(null, /*! ./comment_parent.vue */ "../../../../code/uni-app project/lemon_app/components/comment_parent.vue"));};var _default = { data: function data() {return { inputVal: '', // submitDetail:{},
       // commentIsLike:false,
-      nickname: '', placeholder: '', user_id: '', //当前视频的user_id
+      nickname: '', placeholder: '想说点什么...', user_id: '', //当前视频的user_id
       comment_id: '', newCommentList: '' // isTapLike:false
     };}, components: { // comtop,
-    comparent: comparent }, props: ['commentList', 'submitDetail', 'loginMsg', 'videoDetail'], watch: { commentList: function commentList(newVal, oldVal) {this.updata();} }, methods: { updata: function updata() {this.newCommentList = this.commentList;console.log(this.videoDetail, '拿视频的详情');console.log(this.newCommentList, '有没有拿到？？');}, commentLike: function commentLike(res) {//评论点赞
-      if (!res.user_comment_like) {_api.default.commentLike({ comment_id: res.comment_id, op: 1 }, this.loginMsg.access_token).then(function (res) {console.log(res, '评论点赞');});} else {_api.default.commentCancelLike({ comment_id: res.comment_id }, this.loginMsg.access_token).then(function (res) {console.log(res, '评论取消点赞');});
+    comparent: comparent }, props: ['commentList', 'submitDetail', 'loginMsg', 'videoDetail'], watch: { commentList: function commentList(newVal, oldVal) {this.updata();} }, mounted: function mounted() {// console.log(this.commentList,'显示')
+    //commentList可以控制评论的显示隐藏，需要每次显示的时候都将this.newCommentList赋值，不然打开后是没有数据的
+    this.newCommentList = this.commentList;}, methods: { updata: function updata() {this.newCommentList = this.commentList;console.log(this.videoDetail, '拿视频的详情');console.log(this.newCommentList, '有没有拿到？？');}, commentLike: function commentLike(res) {//评论点赞
+      if (!res.user_comment_like) {_api.default.commentLike({ comment_id: res.comment_id, op: 1 }, this.loginMsg.access_token).then(function (res) {console.log(res, '评论点赞');});} else {_api.default.commentCancelLike({ comment_id: res.comment_id },
+        this.loginMsg.access_token).then(function (res) {
+          console.log(res, '评论取消点赞');
+        });
       }
       this.getNewCommentList(); //重新获取评论数据
 
     },
-
+    //获取输入内容
     input: function input(e) {
       // 获取video_id,parent_id
       //获取评论内容
       this.inputVal = e.detail.value;
+      console.log(this.inputVal, 999999);
       this.submitDetail.video_comment = e.detail.value;
+      // #ffde50
       // console.log(this.submitDetail,1000000)
     },
+
     submit: function submit() {var _this = this;
       // console.log(this.videoDetail,'视频详情')
       if (this.inputVal != '') {
+        uni.showLoading({
+          title: '加载中' });
+
         var that = this;
         // 提交评论请求
         _api.default.commentSubmit({
@@ -302,7 +313,13 @@ var comparent = function comparent() {return __webpack_require__.e(/*! import() 
           parent_id: this.comment_id,
           video_comment: this.submitDetail.video_comment },
         this.loginMsg.access_token).then(function (res) {
+          _this.$emit('addComment', {});
           _this.getNewCommentList(); //重新获取评论数据
+          //值清空，重新显示   想说点什么...
+          _this.inputVal = '';
+          _this.placeholder = '想说点什么...';
+          console.log(_this.val, _this.inputVal, _this.placeholder, '清空');
+          uni.hideLoading();
         });
 
       }
@@ -329,12 +346,11 @@ var comparent = function comparent() {return __webpack_require__.e(/*! import() 
       this.submitDetail.parent_id = res.comment_id;
       this.submitDetail.nickname = res.nickname;
       console.log(this.submitDetail.parent_id, '有没有改变');
-      // console.log(this.submitDetail.nickname,555555)
+
       this.placeholder = '回复@' + this.submitDetail.nickname;
-      //需要手动给inputVal赋值，能判断实现第二种情况
-      this.inputVal = '假装有值';
-      // console.log(this.placeholder,666666)
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 

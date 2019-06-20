@@ -33,8 +33,8 @@
 		</div>
 
 		<div class="submitComment">
-			<div class="text"><input type="text" :placeholder="inputVal==''?'想说点什么...':placeholder" @input="input"></div>
-			<div class="btn" @tap="submit"><span>发表</span></div>
+			<div class="text"><input type="text" :value='inputVal'  :placeholder="placeholder"  @input="input"></div>
+			<div :style="inputVal==''?'background: #979797':'background: #ffde50'"  class="btn" @tap="submit"><span>发表</span></div>
 		</div>
 	</view>
 </template>
@@ -50,7 +50,7 @@
 				// submitDetail:{},
 				// commentIsLike:false,
 				nickname: '',
-				placeholder: '',
+				placeholder: '想说点什么...',
 				user_id: '' ,//当前视频的user_id
 				comment_id:'',
 				
@@ -67,6 +67,11 @@
 			commentList(newVal,oldVal){
 				this.updata()
 			}
+		},
+		mounted(){
+			// console.log(this.commentList,'显示')
+			//commentList可以控制评论的显示隐藏，需要每次显示的时候都将this.newCommentList赋值，不然打开后是没有数据的
+			this.newCommentList=this.commentList
 		},
 		methods: {
 			updata(){
@@ -93,17 +98,23 @@
 				this.getNewCommentList()  //重新获取评论数据
 			
 			},
-
+			//获取输入内容
 			input(e) {
 				// 获取video_id,parent_id
 				//获取评论内容
 				this.inputVal = e.detail.value
+				console.log(this.inputVal,999999)
 				this.submitDetail.video_comment = e.detail.value
+				// #ffde50
 				// console.log(this.submitDetail,1000000)
 			},
+		
 			submit() {
 				// console.log(this.videoDetail,'视频详情')
 				if (this.inputVal != '') {
+					uni.showLoading({
+						title: '加载中'
+					});
 					let that = this;
 					// 提交评论请求
 					api.commentSubmit({
@@ -112,7 +123,13 @@
 						parent_id: this.comment_id,
 						video_comment: this.submitDetail.video_comment
 					}, this.loginMsg.access_token).then(res => {
+						this.$emit('addComment',{})
 						this.getNewCommentList()  //重新获取评论数据
+						//值清空，重新显示   想说点什么...
+						this.inputVal = ''
+						this.placeholder='想说点什么...'
+						console.log(this.val,this.inputVal,this.placeholder,'清空')
+						uni.hideLoading();
 					})
 
 				}
@@ -139,11 +156,9 @@
 				this.submitDetail.parent_id = res.comment_id;
 				this.submitDetail.nickname = res.nickname;
 				console.log(this.submitDetail.parent_id, '有没有改变')
-				// console.log(this.submitDetail.nickname,555555)
-				this.placeholder = '回复@' + this.submitDetail.nickname
-				//需要手动给inputVal赋值，能判断实现第二种情况
-				this.inputVal = '假装有值'
-				// console.log(this.placeholder,666666)
+		
+				this.placeholder='回复@' + this.submitDetail.nickname
+				
 			},
 
 		}
@@ -249,8 +264,8 @@
 		.text {
 			flex: 5;
 			align-items: center;
-			background: #ccc;
-			border-radius: 10px;
+			background: #f8f8f8;
+			border-radius: 15px;
 			margin-right: 20px;
 			box-sizing: border-box;
 
@@ -259,7 +274,7 @@
 			input {
 				margin-left: 10px;
 				font-size: 12px;
-				color: #f8f8f8;
+				color: #c9c9c9;
 				height: 30px;
 				line-height: 30px;
 			}
@@ -279,7 +294,6 @@
 			span {
 				font-size: 14px;
 				color: #fff;
-
 			}
 		}
 	}

@@ -7,12 +7,12 @@
 		</div>
 		<div class="video_comment" @tap="getComment(other)">
 			<image src="/static/1.png" alt=""></image>
-			<span>{{other.user_comment_total==undefined?0:other.user_comment_total}}</span>
+			<span>{{otherData.user_comment_total==undefined?0:otherData.user_comment_total}}</span>
 		</div>
 		<!-- 这里需要使用touchstart,这个执行时机早 -->
 		<button open-type="share" class="video_share" @touchstart="selectShare(other)">
 			<image style="visibility: visible;" src="/static/2.png" alt=""></image>
-			<span style="visibility: visible;">{{other.user_share_total==undefined?0:other.user_share_total}}</span>
+			<span style="visibility: visible;">{{otherData.user_share_total==undefined?0:otherData.user_share_total}}</span>
 		</button>
 	</div>
 </template>

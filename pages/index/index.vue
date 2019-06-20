@@ -28,15 +28,7 @@
 	export default {
 		data() {
 			return {
-				videoList: {
-					// title: "",
-					// user_like_total: "",
-					// user_comment_total: "",
-					// user_share_total: "",
-					// public_video_down_url: "",
-					// user_id: "",
-					// video_id: ""
-				},
+				videoList: {},
 				// commentList: {},
 				// videoIsLike: 0,
 				shareDetail: {},
@@ -49,40 +41,53 @@
 			myvideo,
 			other,
 		},
+
 		onShareAppMessage(res) {
-			// console.log(this.shareDetail,'分享')
-			// console.log(this)
+
+			// 	//如果不是点击分享得到的数据就不让分享
+			// if (res.from === 'menu') { // 来自页面内分享按钮
+			// 	console.log('点击面板的分享')
+			// 	// uni.showToast({
+			// 	// 	title: '标题',
+			// 	// 	duration: 2000
+			// 	// });     //提示框无法显示
+			// }
 			if (res.from === 'button') { // 来自页面内分享按钮
 				// console.log(res.target)
-			}
-			return {
-			
-				title: this.shareDetail.title,
-				imageUrl: this.shareDetail.cover_img,
-				path: `/pages/commentList/commentList?video_id=${this.shareDetail.video_id}&user_id=${this.shareDetail.user_id}`,
-				success: function(res) {
-					console.log('成功', res)
-				},
-				fail: function(res) {
-					console.log(res,'失败')
+				console.log('点击按钮的分享')
+				return {
+					title: this.shareDetail.title,
+					imageUrl: this.shareDetail.cover_img,
+					path: `/pages/commentList/commentList?video_id=${this.shareDetail.video_id}&user_id=${this.shareDetail.user_id}`,
+					success: function(res) {
+						console.log('成功', res)
+					},
+					fail: function(res) {
+						console.log(res, '失败')
+					}
 				}
+			}else {
+				return 
 			}
+
 		},
 		created() {
+
 			//第三方登录获取token以及user_id等,并把数据放进data中
 			let that = this
 			uni.login({
 				provider: 'weixin',
 				scopes: 'auth_base',
 				success(res) {
-					// console.log(res.code, 333333)
+					console.log(res.code, 333333)
 					api.thirdLogin({
 						type: 4,
 						code: res.code
 					}).then(res => {
 						// console.log(res,1122321312)
+
 						that.loginMsg = res.data
-						// console.log(that.loginMsg,1111)
+						console.log(that.loginMsg, 1111)
 
 						//将获取到的登录信息放进storage
 						uni.setStorage({
@@ -159,6 +164,7 @@
 				padding: 10px;
 				display: flex;
 				align-items: center;
+
 				// justify-content: space-around;
 				.left {
 					flex: 1;
@@ -182,7 +188,7 @@
 
 				.right {
 					// flex: 1;
-					display: flex;	
+					display: flex;
 					justify-content: center;
 					align-items: center;
 					font-size: 14px;

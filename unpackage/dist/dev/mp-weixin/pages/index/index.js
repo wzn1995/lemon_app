@@ -143,46 +143,51 @@ var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ 
 //
 //
 //
-var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | components/myvideo */ "components/myvideo").then(__webpack_require__.bind(null, /*! ../../components/myvideo.vue */ "../../../../code/uni-app project/lemon_app/components/myvideo.vue"));};var other = function other() {return __webpack_require__.e(/*! import() | components/other */ "components/other").then(__webpack_require__.bind(null, /*! ../../components/other.vue */ "../../../../code/uni-app project/lemon_app/components/other.vue"));};var _default = { data: function data() {return { videoList: {// title: "",
-        // user_like_total: "",
-        // user_comment_total: "",
-        // user_share_total: "",
-        // public_video_down_url: "",
-        // user_id: "",
-        // video_id: ""
-      }, // commentList: {},
+var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | components/myvideo */ "components/myvideo").then(__webpack_require__.bind(null, /*! ../../components/myvideo.vue */ "../../../../code/uni-app project/lemon_app/components/myvideo.vue"));};var other = function other() {return __webpack_require__.e(/*! import() | components/other */ "components/other").then(__webpack_require__.bind(null, /*! ../../components/other.vue */ "../../../../code/uni-app project/lemon_app/components/other.vue"));};var _default = { data: function data() {return { videoList: {}, // commentList: {},
       // videoIsLike: 0,
       shareDetail: {}, loginMsg: '' // shareInfo: {}
       // 'token':
-    };}, components: { myvideo: myvideo, other: other }, onShareAppMessage: function onShareAppMessage(res) {// console.log(this.shareDetail,'分享')
-    // console.log(this)
+    };}, components: { myvideo: myvideo, other: other }, onShareAppMessage: function onShareAppMessage(res) {// 	//如果不是点击分享得到的数据就不让分享
+    // if (res.from === 'menu') { // 来自页面内分享按钮
+    // 	console.log('点击面板的分享')
+    // 	// uni.showToast({
+    // 	// 	title: '标题',
+    // 	// 	duration: 2000
+    // 	// });     //提示框无法显示
+    // }
     if (res.from === 'button') {// 来自页面内分享按钮
       // console.log(res.target)
-    }return { title: this.shareDetail.title, imageUrl: this.shareDetail.cover_img,
-      path: "/pages/commentList/commentList?video_id=".concat(this.shareDetail.video_id, "&user_id=").concat(this.shareDetail.user_id),
-      success: function success(res) {
-        console.log('成功', res);
-      },
-      fail: function fail(res) {
-        console.log(res, '失败');
-      } };
+      console.log('点击按钮的分享');return { title: this.shareDetail.title, imageUrl: this.shareDetail.cover_img,
+        path: "/pages/commentList/commentList?video_id=".concat(this.shareDetail.video_id, "&user_id=").concat(this.shareDetail.user_id),
+        success: function success(res) {
+          console.log('成功', res);
+        },
+        fail: function fail(res) {
+          console.log(res, '失败');
+        } };
+
+    } else {
+      return;
+    }
 
   },
   created: function created() {
+
     //第三方登录获取token以及user_id等,并把数据放进data中
     var that = this;
     uni.login({
       provider: 'weixin',
       scopes: 'auth_base',
       success: function success(res) {
-        // console.log(res.code, 333333)
+        console.log(res.code, 333333);
         _api.default.thirdLogin({
           type: 4,
           code: res.code }).
         then(function (res) {
           // console.log(res,1122321312)
+
           that.loginMsg = res.data;
-          // console.log(that.loginMsg,1111)
+          console.log(that.loginMsg, 1111);
 
           //将获取到的登录信息放进storage
           uni.setStorage({

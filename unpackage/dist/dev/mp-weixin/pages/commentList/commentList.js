@@ -115,46 +115,67 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ "../../../../code/uni-app project/lemon_app/utils/api.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | components/myvideo */ "components/myvideo").then(__webpack_require__.bind(null, /*! ../../components/myvideo.vue */ "../../../../code/uni-app project/lemon_app/components/myvideo.vue"));};var comOther = function comOther() {return __webpack_require__.e(/*! import() | components/com_other */ "components/com_other").then(__webpack_require__.bind(null, /*! ../../components/com_other.vue */ "../../../../code/uni-app project/lemon_app/components/com_other.vue"));};var comment = function comment() {return __webpack_require__.e(/*! import() | components/comment */ "components/comment").then(__webpack_require__.bind(null, /*! ../../components/comment.vue */ "../../../../code/uni-app project/lemon_app/components/comment.vue"));};var _default = { data: function data() {return { videoDetail: {}, commentList: {}, submitDetail: {}, loginMsg: '', video_id: "", user_id: "", commentLength: '', flag: false, show: true,
-
-      animationData: {} };
 
 
-  },
-  components: {
-    myvideo: myvideo,
-    comOther: comOther,
-    comment: comment },
 
-  onLoad: function onLoad(option) {
-    //将路由的两个参数保存
-    this.video_id = option.video_id;
-    this.user_id = option.user_id;
-    // console.log(this.user_id,this.video_id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _api = _interopRequireDefault(__webpack_require__(/*! ../../utils/api.js */ "../../../../code/uni-app project/lemon_app/utils/api.js"));
+
+
+
+__webpack_require__(/*! ../../iconfont/iconfont.css */ "../../../../code/uni-app project/lemon_app/iconfont/iconfont.css");function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | components/myvideo */ "components/myvideo").then(__webpack_require__.bind(null, /*! ../../components/myvideo.vue */ "../../../../code/uni-app project/lemon_app/components/myvideo.vue"));};var comOther = function comOther() {return __webpack_require__.e(/*! import() | components/com_other */ "components/com_other").then(__webpack_require__.bind(null, /*! ../../components/com_other.vue */ "../../../../code/uni-app project/lemon_app/components/com_other.vue"));};var comment = function comment() {return __webpack_require__.e(/*! import() | components/comment */ "components/comment").then(__webpack_require__.bind(null, /*! ../../components/comment.vue */ "../../../../code/uni-app project/lemon_app/components/comment.vue"));};var _default = { data: function data() {return { videoDetail: {}, commentList: {}, submitDetail: {}, loginMsg: '', video_id: "", user_id: "", commentLength: '', flag: false, isShow: true, isLarge: false, videoIsLike: '', animationData: {} };}, components: { myvideo: myvideo, comOther: comOther, comment: comment }, onLoad: function onLoad(option) {//将路由的两个参数保存
+    this.video_id = option.video_id;this.user_id = option.user_id; // console.log(this.user_id,this.video_id)
     // console.log(option)
     //获取storage中的登录信息
-    var that = this;
-    uni.getStorage({
-      key: 'loginMsg',
-      success: function success(res) {
-        that.loginMsg = res.data;
-        // console.log(that.loginMsg, 'option')
+    var that = this;uni.getStorage({ key: 'loginMsg', success: function success(res) {that.loginMsg = res.data;console.log(that.loginMsg, '登录信息'); // console.log(that.loginMsg, 'option')
       } });
 
   },
@@ -177,7 +198,9 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
       console.log(video_detail);
       _this.videoDetail = video_detail.data.data.video_detail;
       //如果我点赞了，进入comment页面，请求数据，这个视频详情有一个user_video_like字段，通过这个字段去判断是不是有点赞
-      console.log(_this.videoDetail, 11111); //这里有一个user_id,默认是这个作为回复对象
+      //存储点赞状态
+      _this.videoIsLike = _this.videoDetail.user_video_like;
+      console.log(_this.videoIsLike, _this.videoDetail, 11111); //这里有一个user_id,默认是这个作为回复对象
       // this.videoDetail.user_video_like  0 没点赞，  1 点赞了
 
       /*submitDetail*/
@@ -205,8 +228,8 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
   onReachBottom: function onReachBottom() {var _this2 = this;
     // console.log('加载更多')
     //如果没有更多数据了，就不需要重复发请求。通过数据的长度来判断是不是有新的数据追加了
-    if (!this.flag) {
-      //如果有新的数据追加
+    if (!this.flag && !this.isLarge) {
+      //如果有新的数据追加，并且是视频缩小情况下
       var index = this.commentList.length - 1;
       var last_id = this.commentList[index].comment_id;
       // console.log(last_id,333)
@@ -236,9 +259,35 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
 
     this.animation = animation;
   },
+  onShareAppMessage: function onShareAppMessage(res) {
+    console.log(res);
+    if (res.from === 'button') {// 来自页面内分享按钮
+      console.log(res.target);
+    }
+    return {
+      title: this.videoDetail.title,
+      imageUrl: this.videoDetail.cover_img,
+      path: "/pages/commentList/commentList?video_id=".concat(this.videoDetail.video_id, "&user_id=").concat(this.videoDetail.user_id),
+      success: function success(res) {
+        console.log('成功', res);
+        //分享数+1
+        this.videoDetail.user_share_total++;
+      },
+      fail: function fail(res) {
+        console.log(res, '失败');
+      } };
+
+  },
+
   methods: {
     handleCancel: function handleCancel() {
-      this.show = false;
+      if (this.videoDetail.duration == 0) {
+        return;
+      }
+      //放大
+      this.isLarge = true;
+      // console.log(this.commentList,'放大')
+      this.isShow = false;
       // console.log(this.animation)
       var rate = this.videoDetail.width / this.screenWidth;
       this.height = this.screenHeight * rate;
@@ -249,8 +298,39 @@ var myvideo = function myvideo() {return __webpack_require__.e(/*! import() | co
 
       this.animation.height(this.height).step();
       this.animationData = this.animation.export();
-      console.log(this.animationData, 8888);
 
+      // this.commentList=this.commentList
+      // console.log(this.animationData, 8888)
+
+    },
+    videoLike: function videoLike(data) {var _this3 = this;
+      console.log(data, 999999, this.loginMsg.access_token);
+      this.videoIsLike = !this.videoIsLike == true ? 1 : 0;
+      _api.default.videoLike({
+        video_id: data.video_id,
+        op: this.videoIsLike },
+      this.loginMsg.access_token).then(function (res) {
+        _this3.videoIsLike == 1 ? _this3.videoDetail.user_like_total++ : _this3.videoDetail.user_like_total--;
+        _this3.videoDetail.user_video_like = _this3.videoIsLike;
+        // console.log(res,'点赞了777777')
+        //变色 #ff176b，数量加一，返回主页的时候，那边的数据也要加1
+
+
+      });
+    },
+    backToComment: function backToComment() {
+      //缩小
+      // console.log(this.commentList,'缩小')
+      // console.log(1233333)
+      this.isShow = true;
+      this.animation.height(225).step();
+      this.animationData = this.animation.export();
+      this.isLarge = false;
+      // this.commentList=this.commentList
+    },
+    handleAddComment: function handleAddComment() {
+      this.videoDetail.user_comment_total++;
+      console.log(this.videoDetail.user_comment_total, '数量加1');
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 

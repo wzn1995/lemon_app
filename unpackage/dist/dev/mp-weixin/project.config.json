@@ -34,16 +34,15 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "comment",
-					"pathName": "pages/commentList/commentList",
-					"query": "video_id=2408",
-					"scene": null
+					"name": "",
+					"pathName": "pages/index/index",
+					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "my",
-					"pathName": "pages/my/my",
-					"query": "",
+					"name": "comment",
+					"pathName": "pages/commentList/commentList",
+					"query": "video_id=801&user_id=141",
 					"scene": null
 				}
 			]
